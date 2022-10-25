@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Featured from './components/Featured';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
 
 function App() {
+
+  const sidebarStatus = useSelector((state: RootState) => state.sidebarStatus);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Router> */}
+        <Container fluid style={{ 'paddingLeft': 0, 'paddingRight': 0 }}>
+          <Header />
+
+            <div className="main-page">
+              { sidebarStatus.value ? <Sidebar /> : null }
+              <Featured />
+            </div>
+        </Container>
+
+        {/* <Routes>
+          <Route path='/' element={<App />} />
+        </Routes> */}
+      {/* </Router> */}
     </div>
   );
 }

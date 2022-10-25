@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* VARIABLES */
+$dark-bg: #121212;
+$card-bg: #1c1c1c;
+$main-green: #44b079;
+$main-red: #ef405a;
+$main-yellow: #ffff02;
+$main-gray: #868686;
+$main-white: #dddddd;
+
+/* MIXINS */
+@mixin emtpyButton {
+  border: none;
+  background: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.App {
+  background-color: $dark-bg;
+  height: 100%;
+}
+
+.main-page {
+  display: flex;
+}
+
+/* FEATURED */
+.featured {
+  background-color: $dark-bg;
+  padding-top: 100px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+    padding-left: 35px;
+  }
+
+  .video-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 35px;
+
+    &:not(&:last-of-type) {
+      margin-right: 10px;
+    }
+
+    .video-container {
+      transition: 0.2s ease-in-out;
+      z-index: 9;
+
+      &:hover {
+        // transform: scale(1.07);
+        transform: translate(7px, -7px);
+        cursor: pointer;
+      }
+    }
+
+    .channel-container {
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+    }
+
+    .color-bg {
+      position: absolute;
+      background-color: $main-red;
+      width: 340px;
+      height: 290px;
+    }
+
+    .thumbnail {
+      width: 340px;
+      height: 200px;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .channel {
+      width: 340px;
+      height: 200px;
+      text-align: center;
+      margin-top: 10px;
+
+      img {
+        width: 180px;
+        border-radius: 50%;
+      }
+    }
+
+    .video-details {
+      background-color: $card-bg;
+      padding: 14px 10px;
+      width: 340px;
+      height: 90px;
+
+      h5 {
+        color: #fff;
+        font-size: 16px;
+      }
+
+      h6 {
+        color: $main-green;
+        font-size: 12px;
+
+        &:last-of-type {
+          color: $main-gray;
+        }
+      }
+    }
+
+    .channel-details {
+      text-align: center;
+      padding-top: 5px;
+
+      h5 {
+        color: #fff;
+        font-size: 16px;
+      }
+
+      h6 {
+        color: $main-red;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+/* HEADER */
+.header {
+  background-color: $card-bg;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 999;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+
+  form {
+    input[type="text"] {
+      background-color: $dark-bg;
+      padding: 7px 12px;
+      width: 500px;
+
+      border: none;
+      outline: none;
+      color: $main-gray;
+      transition: 0.3s ease-in-out;
+
+      &:focus {
+        outline: $main-red 0.5px solid;
+      }
+
+      &::placeholder {
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        color: $main-gray;
+      }
+    }
+
+    input[type="submit"] {
+      background-color: $card-bg;
+    }
+
+    button {
+      background-color: $card-bg;
+      border: none;
+      padding: 7px 12px;
+      width: 60px;
+      margin-left: 2px;
+      box-shadow: 10px 10px 29px -4px rgba(0, 0, 0, 0.58);
+
+      #search-icon {
+        color: $main-gray;
+        font-size: 19px;
+      }
+    }
+  }
+
+  .logo-container {
+    #burger-menu {
+      color: $main-gray;
+      font-size: 25px;
+      margin-right: 20px;
+    }
+
+    button {
+      @include emtpyButton;
+    }
+
+    #logo {
+      color: red;
+      font-size: 40px;
+    }
+  }
+
+  .profile {
+    font-size: 18px;
+    color: $main-white;
+
+    #notifications {
+      margin-right: 25px;
+    }
+  }
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  // position: relative;
+  background-color: $card-bg;
+  // top: 60px;
+  // left: 0;
+  // width: 100%;
+  min-width: 260px;
+  height: 100%;
+  z-index: 99;
+
+  ul {
+    list-style: none;
+    margin-top: 80px;
+
+    li {
+      color: $main-white;
+      display: flex;
+      align-items: center;
+      padding: 12px 0 0 30px;
+      margin-left: -30px;
+
+      transition: 0.3s ease-in-out;
+
+      .side-icon {
+        margin: 0 10px 15px 0;
+      }
+
+      &:hover {
+        background-color: rgba(128, 128, 128, 0.171);
+        cursor: pointer;
+      }
+    }
+
+    .sidebar-functionality {
+      margin-top: 40px;
+    }
+
+    .filter-item {
+      display: flex;
+      justify-content: space-between;
+      z-index: 999;
+
+      .filter-container {
+        display: flex;
+
+        .filter-categories {
+          position: absolute;
+          background-color: $card-bg;
+          padding: 25px;
+          top: 431px;
+          right: -180px;
+          width: 180px;
+          border-left: 8px solid $dark-bg;
+
+          .filter-checkbox {
+            display: flex;
+            justify-content: space-between;
+
+            input {
+              accent-color: $main-green;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .side-icon {
+        margin-top: 5px;
+      }
+
+      .expand-icon {
+        font-size: 18px;
+        margin: 0 30px 15px 0;
+      }
+    }
+  }
+
+  .subscriptions {
+    ul {
+      margin-top: 0;
+    }
+
+    h6 {
+      font-size: 15px;
+      color: $main-white;
+      text-transform: uppercase;
+      padding: 14px 30px;
+    }
+
+    .user-icon {
+      font-size: 13px;
+    }
+  }
+}
