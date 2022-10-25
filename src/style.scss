@@ -324,3 +324,101 @@ body {
     }
   }
 }
+
+/* VIDEO PLAYER */
+.video-page {
+  color: $main-white;
+  padding: 110px;
+
+  .video-player {
+    .video-info {
+      margin-top: 18px;
+
+      h2 {
+        font-size: 18px;
+      }
+
+      .stats {
+        display: flex;
+        justify-content: space-between;
+        color: $main-gray;
+
+        p {
+          font-size: 15px;
+        }
+
+        .video-actions {
+          button {
+            border: none;
+            color: $main-white;
+            font-size: 15px;
+
+            background-color: $card-bg;
+            padding: 9px 10px;
+            border-radius: 25px;
+            margin-right: 15px;
+            width: 110px;
+
+            transition: 0.3s ease-in-out;
+
+            .thumb {
+              margin-right: 7px;
+              margin-bottom: 2px;
+              color: $main-gray;
+            }
+
+            &:hover {
+              background-color: #3e3e3e;
+            }
+          }
+        }
+      }
+    }
+
+    .description {
+      p {
+        font-size: 14px;
+        width: 80%;
+        overflow: hidden;
+      }
+
+      button {
+        background: none;
+        border: none;
+        color: $main-gray;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      hr {
+        color: $main-gray;
+      }
+    }
+  }
+
+  .suggested-list {
+    margin: 0 0 30px 15px;
+    img {
+      width: 270px;
+    }
+
+    .video-details {
+      h5 {
+        font-size: 13px;
+        margin-top: 13px;
+        line-height: 15px;
+      }
+      h6 {
+        font-size: 13px;
+        font-weight: 400;
+        color: $main-gray;
+        line-height: 10px;
+
+        &:last-of-type {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

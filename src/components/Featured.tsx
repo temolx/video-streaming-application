@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { getData } from '../API/getData';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import { Link } from 'react-router-dom';
 
 import { colors } from '../colors';
 
@@ -29,11 +30,13 @@ function Featured() {
         <h2>{searchFilter.value !== '' ? searchFilter.value : 'Featured'} Videos</h2>
 
             { videos && videos.map((video: any) => (
-                <Col className='video-list' key={ video.id.videoId } style={{ 'paddingLeft': 0, 'paddingRight': 0, 'margin': '15px' }} >
+            <Col className='video-list' key={ video.id.videoId } style={{ 'paddingLeft': 0, 'paddingRight': 0, 'margin': '15px' }} >
                 <div className={ video.id.kind === "youtube#video" ? "video-container" : "channel-container" }>
-                    <div className={ video.id.kind === "youtube#video" ? "thumbnail" : "channel" }>
-                        <img src={video.snippet.thumbnails.medium.url} alt='thumbnail' />
-                    </div>
+                    <Link to={`/video/${video.id.videoId}`}>
+                        <div className={ video.id.kind === "youtube#video" ? "thumbnail" : "channel" }>
+                            <img src={video.snippet.thumbnails.medium.url} alt='thumbnail' />
+                        </div>
+                    </Link>
 
                     { video.id.kind === "youtube#video" ? 
                     <div className="video-details">

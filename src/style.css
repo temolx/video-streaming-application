@@ -262,4 +262,79 @@ body {
 }
 .sidebar .subscriptions .user-icon {
   font-size: 13px;
+}
+
+/* VIDEO PLAYER */
+.video-page {
+  color: #dddddd;
+  padding: 110px;
+}
+.video-page .video-player .video-info {
+  margin-top: 18px;
+}
+.video-page .video-player .video-info h2 {
+  font-size: 18px;
+}
+.video-page .video-player .video-info .stats {
+  display: flex;
+  justify-content: space-between;
+  color: #868686;
+}
+.video-page .video-player .video-info .stats p {
+  font-size: 15px;
+}
+.video-page .video-player .video-info .stats .video-actions button {
+  border: none;
+  color: #dddddd;
+  font-size: 15px;
+  background-color: #1c1c1c;
+  padding: 9px 10px;
+  border-radius: 25px;
+  margin-right: 15px;
+  width: 110px;
+  transition: 0.3s ease-in-out;
+}
+.video-page .video-player .video-info .stats .video-actions button .thumb {
+  margin-right: 7px;
+  margin-bottom: 2px;
+  color: #868686;
+}
+.video-page .video-player .video-info .stats .video-actions button:hover {
+  background-color: #3e3e3e;
+}
+.video-page .video-player .description p {
+  font-size: 14px;
+  width: 80%;
+  overflow: hidden;
+}
+.video-page .video-player .description button {
+  background: none;
+  border: none;
+  color: #868686;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.video-page .video-player .description hr {
+  color: #868686;
+}
+.video-page .suggested-list {
+  margin: 0 0 30px 15px;
+}
+.video-page .suggested-list img {
+  width: 270px;
+}
+.video-page .suggested-list .video-details h5 {
+  font-size: 13px;
+  margin-top: 13px;
+  line-height: 15px;
+}
+.video-page .suggested-list .video-details h6 {
+  font-size: 13px;
+  font-weight: 400;
+  color: #868686;
+  line-height: 10px;
+}
+.video-page .suggested-list .video-details h6:last-of-type {
+  font-size: 12px;
 }/*# sourceMappingURL=style.css.map */

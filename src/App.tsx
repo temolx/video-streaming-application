@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Featured from './components/Featured';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import VideoPlayer from './components/VideoPlayer';
 
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
@@ -16,20 +17,20 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Router> */}
+      <Router>
         <Container fluid style={{ 'paddingLeft': 0, 'paddingRight': 0 }}>
           <Header />
 
             <div className="main-page">
               { sidebarStatus.value ? <Sidebar /> : null }
-              <Featured />
             </div>
         </Container>
 
-        {/* <Routes>
-          <Route path='/' element={<App />} />
-        </Routes> */}
-      {/* </Router> */}
+        <Routes>
+          <Route path='/' element={<Featured />} />
+          <Route path='/video/:videoID' element={<VideoPlayer />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
