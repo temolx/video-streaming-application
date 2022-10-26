@@ -306,6 +306,7 @@ body {
   font-size: 14px;
   width: 80%;
   overflow: hidden;
+  white-space: pre-wrap;
 }
 .video-page .video-player .description button {
   background: none;
@@ -323,6 +324,10 @@ body {
 }
 .video-page .suggested-list img {
   width: 270px;
+  transition: 0.3s ease-in-out;
+}
+.video-page .suggested-list img:hover {
+  filter: brightness(1.25);
 }
 .video-page .suggested-list .video-details h5 {
   font-size: 13px;

@@ -380,6 +380,7 @@ body {
         font-size: 14px;
         width: 80%;
         overflow: hidden;
+        white-space: pre-wrap;
       }
 
       button {
@@ -401,6 +402,11 @@ body {
     margin: 0 0 30px 15px;
     img {
       width: 270px;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        filter: brightness(1.25);
+      }
     }
 
     .video-details {

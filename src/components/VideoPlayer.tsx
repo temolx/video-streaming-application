@@ -2,7 +2,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FC, useEffect, useState } from 'react'
 import { getData } from '../API/getData'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 
@@ -15,6 +15,7 @@ const VideoPlayer: FC = () => {
     const[video, setVideo] = useState<any>('');
     const[expanded, setExpanded] = useState<boolean>(false);
     const[suggestedVideos, setSuggestedVideos] = useState<any[]>([]);
+    const[comments, setComments] = useState<any[]>([]);
 
     let date = new Date()
     const shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format
@@ -24,7 +25,7 @@ const VideoPlayer: FC = () => {
         getData(`videos?part=contentDetails,snippet,statistics&id=${videoID}`)
             .then((res) => {
                 setVideo(res.items[0]);
-                console.log(res.items[0]);
+                // console.log(res.items[0]);
             }).catch((err) => {
                 console.log(err);
             })
@@ -33,13 +34,21 @@ const VideoPlayer: FC = () => {
         getData(`search?part=contentDetails,snippet,statistics&type=video&relatedToVideoId=${videoID}`)
             .then((res) => {
                 setSuggestedVideos(res.items);
-                console.log(res.items);
+                // console.log(res.items);
             }).catch((err) => {
                 console.log(err);
             })
 
         // fetch video comments
-    }, [])
+        getData(`commentThreads?part=snippet&videoId=${videoID}`)
+        .then((res) => {
+            setComments(res);
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        })
+
+    }, [videoID])
 
   return (
     <div className='video-page'>
@@ -64,7 +73,7 @@ const VideoPlayer: FC = () => {
 
             <div className="description">
                 <hr />
-                    <p>{ expanded ? video.snippet.description : video.snippet.description.slice(0, 400) }...</p>
+                    <p>{ expanded ? video.snippet.description : video.snippet.description.slice(0, 200) + '...' }</p>
                     <button onClick={() => setExpanded(!expanded)}>{ expanded ? 'Shoe less' : 'Show more' }</button>
                 <hr />
             </div>
@@ -74,7 +83,7 @@ const VideoPlayer: FC = () => {
         <Col className="suggested" lg={3}>
             { suggestedVideos && suggestedVideos.map((suggestedVideo) => (
                 <div className='suggested-list' key={ suggestedVideo.id.videoId }>
-                    <img src={suggestedVideo.snippet.thumbnails.medium.url} alt='thumbnail' />
+                    <Link to={`/video/${suggestedVideo.id.videoId}`} ><img src={suggestedVideo.snippet.thumbnails.medium.url} alt='thumbnail' /></Link>
 
                     <div className="video-details">
                         <h5>{ suggestedVideo.snippet.title.slice(0, 30) }</h5>
@@ -85,6 +94,10 @@ const VideoPlayer: FC = () => {
             ))}
         </Col>
         </Row>
+
+        <div className="comment-section">
+            
+        </div>
     </div>
   )
 }
