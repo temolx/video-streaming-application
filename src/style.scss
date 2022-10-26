@@ -4,7 +4,6 @@
 $dark-bg: #121212;
 $card-bg: #1c1c1c;
 $main-green: #44b079;
-$main-red: #ef405a;
 $main-yellow: #ffff02;
 $main-gray: #868686;
 $main-white: #dddddd;
@@ -80,7 +79,6 @@ body {
 
     .color-bg {
       position: absolute;
-      background-color: $main-red;
       width: 340px;
       height: 290px;
     }
@@ -139,7 +137,6 @@ body {
       }
 
       h6 {
-        color: $main-red;
         font-size: 12px;
       }
     }
@@ -172,7 +169,6 @@ body {
       transition: 0.3s ease-in-out;
 
       &:focus {
-        outline: $main-red 0.5px solid;
       }
 
       &::placeholder {
@@ -213,8 +209,8 @@ body {
     }
 
     #logo {
-      color: red;
       font-size: 40px;
+      color: red;
     }
   }
 
@@ -423,6 +419,64 @@ body {
 
         &:last-of-type {
           font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+/* COMMENTS */
+.comment-section {
+  .comment-list {
+    display: flex;
+    margin-bottom: 30px;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    button {
+      background: none;
+      border: none;
+    }
+
+    .comment-content-container {
+      margin-left: 15px;
+
+      .comment-content {
+        h5 {
+          font-size: 14px;
+          font-weight: 400;
+
+          &:last-of-type {
+            margin-bottom: 3px;
+            margin-right: 20px;
+          }
+
+          &:first-child {
+            font-weight: 500;
+          }
+        }
+
+        button {
+          color: $main-gray;
+          font-size: 13px;
+        }
+      }
+
+      .rate-buttons {
+        margin-top: 6px;
+
+        button {
+          color: $main-white;
+          margin-right: 15px;
+          font-size: 13px;
+          .thumb {
+            margin: 0 4px 2px 0;
+            color: $main-gray;
+          }
         }
       }
     }

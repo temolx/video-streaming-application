@@ -4,7 +4,7 @@ import { FC, useEffect, useState } from 'react'
 import { getData } from '../API/getData'
 import { useParams, Link } from 'react-router-dom'
 
-import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
+import { FaThumbsUp, FaThumbsDown, FaUserCircle } from 'react-icons/fa';
 
 import ReactPlayer from 'react-player'
 
@@ -16,6 +16,7 @@ const VideoPlayer: FC = () => {
     const[expanded, setExpanded] = useState<boolean>(false);
     const[suggestedVideos, setSuggestedVideos] = useState<any[]>([]);
     const[comments, setComments] = useState<any[]>([]);
+    const[commentExpanded, setCommentExpanded] = useState<string[]>([]);
 
     let date = new Date()
     const shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format
@@ -42,13 +43,26 @@ const VideoPlayer: FC = () => {
         // fetch video comments
         getData(`commentThreads?part=snippet&videoId=${videoID}`)
         .then((res) => {
-            setComments(res);
-            console.log(res);
+            setComments(res.items);
+            console.log(res.items);
         }).catch((err) => {
             console.log(err);
         })
 
     }, [videoID])
+
+    const expandComment = (commentID: string) => {
+        if (!commentExpanded.some((el) => el === commentID)) {
+            setCommentExpanded([...commentExpanded, commentID]);
+        }
+        else {
+            const filteredComments = commentExpanded.filter((el) => {
+                return el !== commentID;
+            })
+
+            setCommentExpanded(filteredComments);
+        }
+    }
 
   return (
     <div className='video-page'>
@@ -78,6 +92,27 @@ const VideoPlayer: FC = () => {
                 <hr />
             </div>
 
+            <div className='comment-section'>
+            { comments && comments.map((comment) => (
+                <div className='comment-list' key={ comment.id } >
+                    <img src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl} alt='commentator profile' />
+
+                    <div className="comment-content-container">
+                        <div className="comment-content">
+                            <h5>{ comment.snippet.topLevelComment.snippet.authorDisplayName }</h5>
+                            <h5>{ commentExpanded.some((el) => el === comment.id) ? comment.snippet.topLevelComment.snippet.textOriginal : (comment.snippet.topLevelComment.snippet.textOriginal.length !== comment.snippet.topLevelComment.snippet.textOriginal.slice(0, 600).length ? comment.snippet.topLevelComment.snippet.textOriginal.slice(0, 600) + '...' : comment.snippet.topLevelComment.snippet.textOriginal.slice(0, 600))}</h5>
+                            { comment.snippet.topLevelComment.snippet.textOriginal.length !== comment.snippet.topLevelComment.snippet.textOriginal.slice(0, 600).length ? <button onClick={() => expandComment(comment.id)}>{ commentExpanded.some((el) => el === comment.id) ? 'Show less' : 'Read more' }</button> : null }
+                        </div>
+
+                        <div className="rate-buttons">
+                            <button><FaThumbsUp className='thumb' /> { video.statistics.likeCount.slice(0, 3) }K</button>
+                            <button><FaThumbsDown className='thumb' /></button>
+                        </div>
+                    </div>
+                </div>
+            )) }
+        </div>
+
         </Col> }
 
         <Col className="suggested" lg={3}>
@@ -94,10 +129,6 @@ const VideoPlayer: FC = () => {
             ))}
         </Col>
         </Row>
-
-        <div className="comment-section">
-            
-        </div>
     </div>
   )
 }
