@@ -287,11 +287,56 @@ body {
 }
 .video-page .video-player .video-info .stats .video-stats p {
   font-size: 15px;
+  margin-bottom: 20px;
 }
-.video-page .video-player .video-info .stats .video-stats h5 {
+.video-page .video-player .video-info .stats .video-stats .uploader-profile {
+  display: flex;
+  align-items: center;
+}
+.video-page .video-player .video-info .stats .video-stats .uploader-profile #checkmark {
+  color: #44b079;
+  margin-right: 6px;
+}
+.video-page .video-player .video-info .stats .video-stats .uploader-profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+  margin-right: 15px;
+}
+.video-page .video-player .video-info .stats .video-stats .uploader-profile .uploader-stats {
+  display: block;
+  margin-top: 8px;
+}
+.video-page .video-player .video-info .stats .video-stats .uploader-profile .uploader-stats h5 {
   color: #dddddd;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
+}
+.video-page .video-player .video-info .stats .video-stats .uploader-profile .uploader-stats .sub-count {
+  color: #868686;
+  font-size: 12px;
+  font-weight: 400;
+}
+.video-page .video-player .video-info .stats .video-stats .uploader-profile button {
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  width: 105px;
+  height: 38px;
+  margin-left: 18px;
+}
+.video-page .video-player .video-info .stats .video-stats .uploader-profile button:hover {
+  background-color: #c8c8c8;
+}
+.video-page .video-player .video-info .stats .video-stats .uploader-profile .subscribe-active {
+  color: #dddddd;
+  background-color: #1c1c1c;
+  width: 135px;
+}
+.video-page .video-player .video-info .stats .video-stats .uploader-profile .subscribe-active:hover {
+  color: #dddddd;
+  background-color: #1c1c1c;
 }
 .video-page .video-player .video-info .stats .video-actions button {
   border: none;
@@ -308,6 +353,9 @@ body {
   margin-right: 7px;
   margin-bottom: 2px;
   color: #868686;
+}
+.video-page .video-player .video-info .stats .video-actions button .active-thumb {
+  color: #dddddd;
 }
 .video-page .video-player .video-info .stats .video-actions button:hover {
   background-color: #3e3e3e;
@@ -370,7 +418,7 @@ body {
 .comment-section .comment-list img {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
+  border-radius: 40px;
 }
 .comment-section .comment-list button {
   background: none;

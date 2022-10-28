@@ -14,6 +14,31 @@ $main-white: #dddddd;
   background: none;
 }
 
+@mixin subscribeBtn {
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  width: 105px;
+  height: 38px;
+  margin-left: 18px;
+
+  &:hover {
+    background-color: #c8c8c8;
+  }
+}
+
+@mixin subscribeBtnActive {
+  color: $main-white;
+  background-color: $card-bg;
+  width: 135px;
+
+  &:hover {
+    color: $main-white;
+    background-color: $card-bg;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -350,12 +375,49 @@ body {
         .video-stats {
           p {
             font-size: 15px;
+            margin-bottom: 20px;
           }
 
-          h5 {
-            color: $main-white;
-            font-size: 16px;
-            font-weight: 500;
+          .uploader-profile {
+            display: flex;
+            align-items: center;
+
+            #checkmark {
+              color: $main-green;
+              margin-right: 6px;
+            }
+
+            img {
+              width: 50px;
+              height: 50px;
+              border-radius: 40px;
+              margin-right: 15px;
+            }
+
+            .uploader-stats {
+              display: block;
+              margin-top: 8px;
+
+              h5 {
+                color: $main-white;
+                font-size: 15px;
+                font-weight: 500;
+              }
+
+              .sub-count {
+                color: $main-gray;
+                font-size: 12px;
+                font-weight: 400;
+              }
+            }
+
+            button {
+              @include subscribeBtn;
+            }
+
+            .subscribe-active {
+              @include subscribeBtnActive;
+            }
           }
         }
 
@@ -377,6 +439,10 @@ body {
               margin-right: 7px;
               margin-bottom: 2px;
               color: $main-gray;
+            }
+
+            .active-thumb {
+              color: $main-white;
             }
 
             &:hover {
@@ -458,7 +524,7 @@ body {
     img {
       width: 50px;
       height: 50px;
-      border-radius: 50%;
+      border-radius: 40px;
     }
 
     button {

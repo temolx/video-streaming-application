@@ -2,17 +2,28 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FC, useEffect, useState } from 'react'
 import { getData } from '../API/getData'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useLocation } from 'react-router-dom'
 
-import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
+import { FaThumbsUp, FaThumbsDown, FaCheckCircle } from 'react-icons/fa';
 import { BsFillPinAngleFill } from 'react-icons/bs';
 import blankProfile from '../img/blankProfile.webp'
 
 import ReactPlayer from 'react-player'
 
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../redux/store';
+import { like } from '../redux/slices/likeSlice';
+import { subscribe } from '../redux/slices/subscriptionSlice';
+
 const VideoPlayer: FC = () => {
 
     const { videoID } = useParams();
+    const location = useLocation();
+    const { channelId } = location.state;
+
+    const dispatch = useDispatch();
+    const likedVideos = useSelector((state: RootState) => state.likedVideos);
+    const subscriptions = useSelector((state: RootState) => state.subscriptions);
 
     const[video, setVideo] = useState<any>('');
     const[expanded, setExpanded] = useState<boolean>(false);
@@ -20,7 +31,7 @@ const VideoPlayer: FC = () => {
     const[comments, setComments] = useState<any[]>([]);
     const[commentExpanded, setCommentExpanded] = useState<string[]>([]);
     const[descKeywords, setDescKeywords] = useState<string[]>([]); // description keywords
-    const[channel, setChannel] = useState<any[]>([]);
+    const[channel, setChannel] = useState<any>([]);
 
     let date = new Date()
     const shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format
@@ -56,11 +67,13 @@ const VideoPlayer: FC = () => {
             console.log(err);
         })
 
+        console.log(channelId)
+
         // fetch uploader channel information
-        getData(`channels?part=snippet,statistics&id=UCBVjMGOIkavEAhyqpxJ73Dw`)
+        getData(`channels?part=snippet,statistics&id=${channelId}`)
         .then((res) => {
-            setChannel(res.items);
-            console.log(res);
+            setChannel(res.items[0]);
+            console.log(res.items[0]);
         }).catch((err) => {
             console.log(err);
         })
@@ -99,11 +112,21 @@ const VideoPlayer: FC = () => {
                 <div className="stats">
                     <div className='video-stats'>
                         <p>{ Number(video.statistics.viewCount).toLocaleString() } views • { shortMonthName(new Date(video.snippet.publishedAt)) + ' ' + new Date(video.snippet.publishedAt).getDate() + ', ' + new Date(video.snippet.publishedAt).getFullYear() }</p>
-                        <h5>Dua Lipa</h5>
+
+                        <div className="uploader-profile">
+                            <img src={channel?.snippet?.thumbnails?.high?.url} alt='channel profile' />
+
+                            <div className="uploader-stats">
+                                <h5>{ channel?.snippet?.title }</h5>
+                                <h5 className='sub-count'>{ Number(channel?.statistics?.subscriberCount).toLocaleString() } subscribers</h5>
+                            </div>
+
+                            <button onClick={() => dispatch(subscribe(channelId))} className={ subscriptions.value.some((el) => el === channelId) ? 'subscribe-active' : '' }>{ subscriptions.value.some((el) => el === channelId) ? (<div><FaCheckCircle id='checkmark' /> Subscribed</div>) : 'Subscribe' }</button>
+                        </div>
                     </div>
 
                     <div className="video-actions">
-                        <button><FaThumbsUp className='thumb' /> { video.statistics.likeCount.slice(0, 3) }K</button>
+                        <button onClick={() => dispatch(like(String(videoID)))}><FaThumbsUp className={ likedVideos.value.some((el) => el === videoID) ? 'active-thumb thumb' : 'thumb' } /> { video.statistics.likeCount.slice(0, 3) }K</button>
                         <button><FaThumbsDown className='thumb' /> Dislike</button>
                     </div>
                 </div>

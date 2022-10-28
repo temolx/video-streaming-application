@@ -32,7 +32,7 @@ function Featured() {
             { videos && videos.map((video: any) => (
             <Col className='video-list' key={ video.id.videoId } style={{ 'paddingLeft': 0, 'paddingRight': 0, 'margin': '15px' }} >
                 <div className={ video.id.kind === "youtube#video" ? "video-container" : "channel-container" }>
-                    <Link to={`/video/${video.id.videoId}`}>
+                    <Link to={`/video/${video.id.videoId}`} state={{ channelId: video.snippet.channelId }}>
                         <div className={ video.id.kind === "youtube#video" ? "thumbnail" : "channel" }>
                             <img src={video.snippet.thumbnails.medium.url} alt='thumbnail' />
                         </div>
