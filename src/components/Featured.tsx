@@ -20,8 +20,8 @@ function Featured() {
     useEffect(() => {
         getData(`search?part=snippet&q=${searchFilter.value}&type=${filters.value}`)
             .then((res) => {
-                console.log(res);
                 setVideos(res.items);
+                console.log(res);
             })
     }, [searchFilter, filters])
 

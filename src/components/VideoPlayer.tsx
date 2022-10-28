@@ -4,7 +4,9 @@ import { FC, useEffect, useState } from 'react'
 import { getData } from '../API/getData'
 import { useParams, Link } from 'react-router-dom'
 
-import { FaThumbsUp, FaThumbsDown, FaUserCircle } from 'react-icons/fa';
+import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
+import { BsFillPinAngleFill } from 'react-icons/bs';
+import blankProfile from '../img/blankProfile.webp'
 
 import ReactPlayer from 'react-player'
 
@@ -17,6 +19,8 @@ const VideoPlayer: FC = () => {
     const[suggestedVideos, setSuggestedVideos] = useState<any[]>([]);
     const[comments, setComments] = useState<any[]>([]);
     const[commentExpanded, setCommentExpanded] = useState<string[]>([]);
+    const[descKeywords, setDescKeywords] = useState<string[]>([]); // description keywords
+    const[channel, setChannel] = useState<any[]>([]);
 
     let date = new Date()
     const shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format
@@ -26,6 +30,9 @@ const VideoPlayer: FC = () => {
         getData(`videos?part=contentDetails,snippet,statistics&id=${videoID}`)
             .then((res) => {
                 setVideo(res.items[0]);
+                setDescKeywords(res.items[0].snippet.description.split(' ').filter((el: string) => {
+                    return el.includes('#');
+                }));
                 // console.log(res.items[0]);
             }).catch((err) => {
                 console.log(err);
@@ -44,7 +51,16 @@ const VideoPlayer: FC = () => {
         getData(`commentThreads?part=snippet&videoId=${videoID}`)
         .then((res) => {
             setComments(res.items);
-            console.log(res.items);
+            // console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        })
+
+        // fetch uploader channel information
+        getData(`channels?part=snippet,statistics&id=UCBVjMGOIkavEAhyqpxJ73Dw`)
+        .then((res) => {
+            setChannel(res.items);
+            console.log(res);
         }).catch((err) => {
             console.log(err);
         })
@@ -72,10 +88,19 @@ const VideoPlayer: FC = () => {
             <ReactPlayer url={`https://www.youtube.com/watch?v=${videoID}`} playing controls muted width='100%' height='650px' className='video' />
 
             <div className="video-info">
+                <div className="keyword-list">
+                    { descKeywords.map((keyword: string) => (
+                        <h5>{ keyword }</h5>
+                    )) }
+                </div>
+
                 <h2>{ video.snippet.title }</h2>
 
                 <div className="stats">
-                    <p>{ Number(video.statistics.viewCount).toLocaleString() } views • { shortMonthName(new Date(video.snippet.publishedAt)) + ' ' + new Date(video.snippet.publishedAt).getDate() + ', ' + new Date(video.snippet.publishedAt).getFullYear() }</p>
+                    <div className='video-stats'>
+                        <p>{ Number(video.statistics.viewCount).toLocaleString() } views • { shortMonthName(new Date(video.snippet.publishedAt)) + ' ' + new Date(video.snippet.publishedAt).getDate() + ', ' + new Date(video.snippet.publishedAt).getFullYear() }</p>
+                        <h5>Dua Lipa</h5>
+                    </div>
 
                     <div className="video-actions">
                         <button><FaThumbsUp className='thumb' /> { video.statistics.likeCount.slice(0, 3) }K</button>
@@ -93,19 +118,27 @@ const VideoPlayer: FC = () => {
             </div>
 
             <div className='comment-section'>
+            <h5 className='comment-header'>Comment section</h5>
+
             { comments && comments.map((comment) => (
                 <div className='comment-list' key={ comment.id } >
-                    <img src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl} alt='commentator profile' />
+                    <img src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl || blankProfile} />
 
                     <div className="comment-content-container">
                         <div className="comment-content">
-                            <h5>{ comment.snippet.topLevelComment.snippet.authorDisplayName }</h5>
+                            <div className="main-info">
+                                { video.snippet.channelId === comment?.snippet?.topLevelComment?.snippet?.authorChannelId?.value ? <BsFillPinAngleFill id='pin' /> : null }
+
+                                <h5 className={ video.snippet.channelId === comment?.snippet?.topLevelComment?.snippet?.authorChannelId?.value ? 'pinned-comment' : '' }>{ comment.snippet.topLevelComment.snippet.authorDisplayName }</h5>
+                                <h5 className='publish-date'>{ date.getFullYear() - new Date(comment.snippet.topLevelComment.snippet.publishedAt).getFullYear() === 0 ? (date.getMonth() - new Date(comment.snippet.topLevelComment.snippet.publishedAt).getMonth() !== 0 ? date.getMonth() - new Date(comment.snippet.topLevelComment.snippet.publishedAt).getMonth() + ' months ago' : 'this month') : date.getFullYear() - new Date(comment.snippet.topLevelComment.snippet.publishedAt).getFullYear() + ' years ago' }</h5>
+                            </div>
+
                             <h5>{ commentExpanded.some((el) => el === comment.id) ? comment.snippet.topLevelComment.snippet.textOriginal : (comment.snippet.topLevelComment.snippet.textOriginal.length !== comment.snippet.topLevelComment.snippet.textOriginal.slice(0, 600).length ? comment.snippet.topLevelComment.snippet.textOriginal.slice(0, 600) + '...' : comment.snippet.topLevelComment.snippet.textOriginal.slice(0, 600))}</h5>
                             { comment.snippet.topLevelComment.snippet.textOriginal.length !== comment.snippet.topLevelComment.snippet.textOriginal.slice(0, 600).length ? <button onClick={() => expandComment(comment.id)}>{ commentExpanded.some((el) => el === comment.id) ? 'Show less' : 'Read more' }</button> : null }
                         </div>
 
                         <div className="rate-buttons">
-                            <button><FaThumbsUp className='thumb' /> { video.statistics.likeCount.slice(0, 3) }K</button>
+                            <button><FaThumbsUp className='thumb' /> { comment.snippet.topLevelComment.snippet.likeCount !== 0 ? comment.snippet.topLevelComment.snippet.likeCount.toLocaleString() : null }</button>
                             <button><FaThumbsDown className='thumb' /></button>
                         </div>
                     </div>

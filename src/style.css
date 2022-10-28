@@ -267,16 +267,31 @@ body {
 .video-page .video-player .video-info {
   margin-top: 18px;
 }
+.video-page .video-player .video-info .keyword-list {
+  display: flex;
+}
+.video-page .video-player .video-info .keyword-list h5 {
+  font-size: 15px;
+  margin-right: 5px;
+  font-weight: 400;
+  color: #3ea6ff;
+}
 .video-page .video-player .video-info h2 {
   font-size: 18px;
+  font-weight: 500;
 }
 .video-page .video-player .video-info .stats {
   display: flex;
   justify-content: space-between;
   color: #868686;
 }
-.video-page .video-player .video-info .stats p {
+.video-page .video-player .video-info .stats .video-stats p {
   font-size: 15px;
+}
+.video-page .video-player .video-info .stats .video-stats h5 {
+  color: #dddddd;
+  font-size: 16px;
+  font-weight: 500;
 }
 .video-page .video-player .video-info .stats .video-actions button {
   border: none;
@@ -340,6 +355,14 @@ body {
 }
 
 /* COMMENTS */
+.comment-section {
+  margin-top: 30px;
+}
+.comment-section .comment-header {
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 500;
+}
 .comment-section .comment-list {
   display: flex;
   margin-bottom: 30px;
@@ -355,6 +378,24 @@ body {
 }
 .comment-section .comment-list .comment-content-container {
   margin-left: 15px;
+}
+.comment-section .comment-list .comment-content-container .comment-content .main-info {
+  display: flex;
+}
+.comment-section .comment-list .comment-content-container .comment-content .main-info #pin {
+  font-size: 13px;
+  margin: 2px 7px 0 0;
+}
+.comment-section .comment-list .comment-content-container .comment-content .main-info .pinned-comment {
+  background-color: #868686;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: 30px;
+  margin-top: -2px;
+}
+.comment-section .comment-list .comment-content-container .comment-content .main-info .publish-date {
+  color: #868686;
+  margin-left: 5px;
 }
 .comment-section .comment-list .comment-content-container .comment-content h5 {
   font-size: 14px;
@@ -382,4 +423,8 @@ body {
 .comment-section .comment-list .comment-content-container .rate-buttons button .thumb {
   margin: 0 4px 2px 0;
   color: #868686;
+  transition: 0.3s ease-in-out;
+}
+.comment-section .comment-list .comment-content-container .rate-buttons button .thumb:hover {
+  color: #dddddd;
 }/*# sourceMappingURL=style.css.map */
