@@ -9,7 +9,7 @@ export const likeSlice = createSlice({
     initialState: { value: [] } as likeSlice, // array of video IDs
     reducers: {
         like: (state: likeSlice, action: PayloadAction<string>) => {
-            if (state.value.some((el) => el === action.payload)) { // already liked
+            if (state.value.some((el) => el === action.payload)) { // video already liked
                 state.value = state.value.filter((el) => {
                     return el !== action.payload;
                 })

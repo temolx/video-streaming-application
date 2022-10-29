@@ -375,12 +375,17 @@ body {
         .video-stats {
           p {
             font-size: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
           }
 
           .uploader-profile {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
+            // align-items: center;
+
+            .channel-actions {
+              display: flex;
+            }
 
             #checkmark {
               color: $main-green;
@@ -413,6 +418,7 @@ body {
 
             button {
               @include subscribeBtn;
+              margin-top: 4px;
             }
 
             .subscribe-active {
@@ -422,6 +428,10 @@ body {
         }
 
         .video-actions {
+          display: flex;
+          align-self: flex-end;
+          margin-bottom: 14px;
+
           button {
             border: none;
             color: $main-white;
@@ -593,6 +603,10 @@ body {
             &:hover {
               color: $main-white;
             }
+          }
+
+          .active-thumb {
+            color: $main-green;
           }
         }
       }

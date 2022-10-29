@@ -287,11 +287,14 @@ body {
 }
 .video-page .video-player .video-info .stats .video-stats p {
   font-size: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .video-page .video-player .video-info .stats .video-stats .uploader-profile {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+}
+.video-page .video-player .video-info .stats .video-stats .uploader-profile .channel-actions {
+  display: flex;
 }
 .video-page .video-player .video-info .stats .video-stats .uploader-profile #checkmark {
   color: #44b079;
@@ -325,6 +328,7 @@ body {
   width: 105px;
   height: 38px;
   margin-left: 18px;
+  margin-top: 4px;
 }
 .video-page .video-player .video-info .stats .video-stats .uploader-profile button:hover {
   background-color: #c8c8c8;
@@ -337,6 +341,11 @@ body {
 .video-page .video-player .video-info .stats .video-stats .uploader-profile .subscribe-active:hover {
   color: #dddddd;
   background-color: #1c1c1c;
+}
+.video-page .video-player .video-info .stats .video-actions {
+  display: flex;
+  align-self: flex-end;
+  margin-bottom: 14px;
 }
 .video-page .video-player .video-info .stats .video-actions button {
   border: none;
@@ -475,4 +484,7 @@ body {
 }
 .comment-section .comment-list .comment-content-container .rate-buttons button .thumb:hover {
   color: #dddddd;
+}
+.comment-section .comment-list .comment-content-container .rate-buttons button .active-thumb {
+  color: #44b079;
 }/*# sourceMappingURL=style.css.map */
