@@ -1,17 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface payloadType {
+    channelId: string,
+    channelName: string
+}
+
 interface subSlice {
-    value: string[]
+    value: payloadType[]
 }
 
 export const subscriptionSlice = createSlice({
     name: 'subscriptionSlice',
     initialState: { value: [] } as subSlice, // aray of channel IDs
     reducers: {
-        subscribe: (state: subSlice, action: PayloadAction<string>) => {
-            if (state.value.some((el) => el === action.payload)) { // already subscribed
+        subscribe: (state: subSlice, action: PayloadAction<payloadType>) => {
+            if (state.value.some((el) => el.channelId === action.payload.channelId)) { // already subscribed
                 state.value = state.value.filter((el) => {
-                    return el !== action.payload;
+                    return el.channelId !== action.payload.channelId;
                 })
             }
             else state.value = [action.payload, ...state.value];

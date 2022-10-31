@@ -4,6 +4,7 @@ import { addSearchWord } from '../redux/slices/SearchSlice';
 import { BiSearch, BiMenu } from 'react-icons/bi';
 import { BsYoutube, BsBellFill, BsEnvelope } from 'react-icons/bs';
 import { toggleSidebar } from '../redux/slices/SidebarSlice';
+import { Link } from 'react-router-dom';
 
 function Header() {
 
@@ -12,7 +13,7 @@ function Header() {
     const[filter, setFilter] = useState<string>('');
 
     const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      e.preventDefault();
+      // e.preventDefault();
 
       // dispatch to redux store
       dispatch(addSearchWord(filter));
@@ -24,12 +25,12 @@ function Header() {
 
         <div className="logo-container">
           <button onClick={() => dispatch(toggleSidebar())}><BiMenu id='burger-menu' /></button>
-          <button onClick={() => dispatch(addSearchWord(''))}><BsYoutube id='logo' /></button>
+          <Link to='/'><button onClick={() => dispatch(addSearchWord(''))}><BsYoutube id='logo' /></button></Link>
         </div>
 
         <form>
             <input type="text" placeholder='Search for...' onChange={(e) => setFilter(e.target.value)} value={filter} />
-            <button onClick={(e) => handleSearch(e)}><BiSearch id='search-icon' /></button>
+            <Link to='/'><button onClick={(e) => handleSearch(e)}><BiSearch id='search-icon' /></button></Link>
         </form>
 
         <div className="profile">

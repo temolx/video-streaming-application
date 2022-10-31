@@ -122,7 +122,7 @@ const VideoPlayer: FC = () => {
                                     <h5 className='sub-count'>{ Number(channel?.statistics?.subscriberCount).toLocaleString() } subscribers</h5>
                                 </div>
 
-                                <button onClick={() => dispatch(subscribe(channelId))} className={ subscriptions.value.some((el) => el === channelId) ? 'subscribe-active' : '' }>{ subscriptions.value.some((el) => el === channelId) ? (<div><FaCheckCircle id='checkmark' /> Subscribed</div>) : 'Subscribe' }</button>
+                                <button onClick={() => dispatch(subscribe({ channelId: channelId, channelName: channel?.snippet?.title }))} className={ subscriptions.value.some((el) => el.channelId === channelId) ? 'subscribe-active' : '' }>{ subscriptions.value.some((el) => el.channelId === channelId) ? (<div><FaCheckCircle id='checkmark' /> Subscribed</div>) : 'Subscribe' }</button>
                             </div>
                         </div>
                     </div>

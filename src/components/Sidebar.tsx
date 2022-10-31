@@ -16,6 +16,7 @@ function Sidebar() {
 
   const dispatch = useDispatch();
   const filters = useSelector((state: RootState) => state.filters);
+  const subscriptions = useSelector((state: RootState) => state.subscriptions);
 
   const[filtersVisible, setFiltersVisible] = useState<boolean>(false);
 
@@ -60,15 +61,14 @@ function Sidebar() {
 
         </ul>
 
-        <div className="subscriptions">
+        { subscriptions.value.length !== 0 && <div className="subscriptions">
             <h6>Subscriptions</h6>
             <ul>
-                <li><User className='side-icon user-icon' /><p>Lady Gaga</p></li>
-                <li><User className='side-icon user-icon' /><p>Bella Poarch</p></li>
-                <li><User className='side-icon user-icon' /><p>Sub Urban</p></li>
-                <li><User className='side-icon user-icon' /><p>Dua Lipa</p></li>
+                { subscriptions && subscriptions.value.map((subscription) => (
+                  <li key={ subscription.channelId }><User className='side-icon user-icon' /><p>{ subscription.channelName }</p></li>
+                )) }
             </ul>
-        </div>
+        </div> }
     </div>
   )
 }

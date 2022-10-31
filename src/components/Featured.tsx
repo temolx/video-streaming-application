@@ -3,13 +3,17 @@ import Col from 'react-bootstrap/Col';
 
 import { useEffect, useState } from 'react'
 import { getData } from '../API/getData';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { Link } from 'react-router-dom';
 
 import { colors } from '../colors';
+import { hideSidebar } from '../redux/slices/SidebarSlice';
+
 
 function Featured() {
+
+    const dispatch = useDispatch();
 
     const searchFilter = useSelector((state: RootState) => state.searchFilter);
     const sidebarStatus = useSelector((state: RootState) => state.sidebarStatus);
@@ -32,7 +36,7 @@ function Featured() {
             { videos && videos.map((video: any) => (
             <Col className='video-list' key={ video.id.videoId } style={{ 'paddingLeft': 0, 'paddingRight': 0, 'margin': '15px' }} >
                 <div className={ video.id.kind === "youtube#video" ? "video-container" : "channel-container" }>
-                    <Link to={`/video/${video.id.videoId}`} state={{ channelId: video.snippet.channelId }}>
+                    <Link to={`/video/${video.id.videoId}`} state={{ channelId: video.snippet.channelId }} onClick={() => dispatch(hideSidebar())}>
                         <div className={ video.id.kind === "youtube#video" ? "thumbnail" : "channel" }>
                             <img src={video.snippet.thumbnails.medium.url} alt='thumbnail' />
                         </div>
