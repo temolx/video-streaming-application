@@ -20,17 +20,42 @@ function Featured() {
     const filters = useSelector((state: RootState) => state.filters);
     const resultsAmount = useSelector((state: RootState) => state.resultsAmount) 
 
-    const[videos, setVideos] = useState<any[]>([]);
-    const[nextPageToken, setNextPageToken] = useState<string>('');
+    const[videos, setVideos] = useState<any>();
+    const[nextToken, setNextToken] = useState<string>('');
+
+    let url = `search?part=snippet&q=${searchFilter.value}&type=${filters.value}`;
 
     useEffect(() => {
-        getData(nextPageToken !== '' ? `search?part=snippet&q=${searchFilter.value}&pageToken=${nextPageToken}&type=${filters.value}` : `search?part=snippet&q=${searchFilter.value}&type=${filters.value}`)
+        getData(url)
             .then((res) => {
-                setVideos([...videos, res.items]);
-                setNextPageToken(res.nextPageToken);
-                console.log(res);
+                setVideos(res.items);
+                setNextToken(res.nextPageToken);
+                
+                // console.log(res);
+                // console.log(videos);
             })
     }, [searchFilter, filters])
+
+
+    window.onscroll = () => {
+        const bottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+
+        if (bottom) {
+            fetchMore();
+            // window.scrollTo(0, 0)
+            // console.log("bottom reached!");
+        }
+    }
+
+    const fetchMore = () => {
+        getData(`${url}&pageToken=${nextToken}`)
+            .then((res) => {
+                setVideos([...videos, ...res.items]);
+                setNextToken(res.nextPageToken);
+                // console.log(res);
+                console.log(videos);
+        })
+    }
 
   return (
     <Row className='featured' style={ sidebarStatus.value ? { 'paddingLeft': '280px', 'paddingRight': '40px' } : { 'paddingLeft': '40px', 'paddingRight': '40px' }}>
