@@ -5,6 +5,7 @@ import { fiterSlice } from "./slices/FilterSlice";
 import { likeSlice } from "./slices/likeSlice";
 import { subscriptionSlice } from "./slices/subscriptionSlice";
 import { likeCommentSlice } from "./slices/likeCommentSlice";
+import { ResultsAmountSlice } from "./slices/ResultsAmountSlice";
 
 const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
         filters: fiterSlice.reducer,
         likedVideos: likeSlice.reducer,
         subscriptions: subscriptionSlice.reducer,
-        likedComments: likeCommentSlice.reducer
+        likedComments: likeCommentSlice.reducer,
+        resultsAmount: ResultsAmountSlice.reducer
     }
 })
 

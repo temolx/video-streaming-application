@@ -18,13 +18,16 @@ function Featured() {
     const searchFilter = useSelector((state: RootState) => state.searchFilter);
     const sidebarStatus = useSelector((state: RootState) => state.sidebarStatus);
     const filters = useSelector((state: RootState) => state.filters);
+    const resultsAmount = useSelector((state: RootState) => state.resultsAmount) 
 
-    const[videos, setVideos] = useState([]);
+    const[videos, setVideos] = useState<any[]>([]);
+    const[nextPageToken, setNextPageToken] = useState<string>('');
 
     useEffect(() => {
-        getData(`search?part=snippet&q=${searchFilter.value}&type=${filters.value}`)
+        getData(nextPageToken !== '' ? `search?part=snippet&q=${searchFilter.value}&pageToken=${nextPageToken}&type=${filters.value}` : `search?part=snippet&q=${searchFilter.value}&type=${filters.value}`)
             .then((res) => {
-                setVideos(res.items);
+                setVideos([...videos, res.items]);
+                setNextPageToken(res.nextPageToken);
                 console.log(res);
             })
     }, [searchFilter, filters])
