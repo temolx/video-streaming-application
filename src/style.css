@@ -23,13 +23,22 @@ body {
 /* FEATURED */
 .featured {
   background-color: #121212;
-  padding-top: 100px;
+  padding-top: 140px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto !important;
 }
 .featured h2 {
+  position: absolute;
+  top: -45px;
+  left: 0;
+  z-index: 99;
+  white-space: nowrap;
   font-size: 20px;
   font-weight: 600;
   color: #fff;
   margin-bottom: 20px;
+  padding-left: 0 !important;
 }
 @-webkit-keyframes loadingAnim {
   0% {
@@ -55,15 +64,17 @@ body {
   width: 60px;
 }
 .featured .video-list {
-  align-items: center;
-}
-.featured .video-list .wow {
   position: relative;
-  width: 310px;
-  height: 260px;
-  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 240px;
+  padding: 0 !important;
+  margin: 0 15px 15px 0;
+  border-radius: 12px;
 }
-.featured .video-list .wow .color-bg {
+.featured .video-list .color-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -73,57 +84,72 @@ body {
      object-fit: cover;
   z-index: -1;
 }
-.featured .video-list .wow .video-container {
+.featured .video-list .video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+  border-radius: 10px;
   transition: 0.2s ease-in-out;
 }
-.featured .video-list .wow .video-container:hover {
+.featured .video-list .video-container:hover {
   transform: translate(7px, -7px);
   cursor: pointer;
 }
-.featured .video-list .wow .channel-container {
+.featured .video-list .channel-container {
+  width: 150px;
+  height: 240px;
   transition: 0.2s ease-in-out;
 }
-.featured .video-list .wow .channel-container:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-}
-.featured .video-list .wow .thumbnail img {
+.featured .video-list .channel-container img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.featured .video-list .wow .channel {
+.featured .video-list .channel-container:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.featured .video-list .thumbnail img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.featured .video-list .channel {
   text-align: center;
   margin-top: 10px;
 }
-.featured .video-list .wow .channel img {
+.featured .video-list .channel img {
   border-radius: 50%;
 }
-.featured .video-list .wow .video-details {
+.featured .video-list .video-details {
   background-color: #1c1c1c;
   padding: 14px 10px;
 }
-.featured .video-list .wow .video-details h5 {
+.featured .video-list .video-details h5 {
   color: #fff;
   font-size: 16px;
 }
-.featured .video-list .wow .video-details h6 {
+.featured .video-list .video-details h6 {
   color: #44b079;
   font-size: 12px;
 }
-.featured .video-list .wow .video-details h6:last-of-type {
+.featured .video-list .video-details h6:last-of-type {
   color: #868686;
 }
-.featured .video-list .wow .channel-details {
+.featured .video-list .channel-details {
   text-align: center;
   padding-top: 5px;
 }
-.featured .video-list .wow .channel-details h5 {
+.featured .video-list .channel-details h5 {
   color: #fff;
   font-size: 16px;
 }
-.featured .video-list .wow .channel-details h6 {
+.featured .video-list .channel-details h6 {
   font-size: 12px;
   color: #ea4d4d;
 }

@@ -62,14 +62,23 @@ body {
 /* FEATURED */
 .featured {
   background-color: $dark-bg;
-  padding-top: 100px;
+  padding-top: 140px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto !important;
 
   h2 {
+    position: absolute;
+    top: -45px;
+    left: 0;
+    z-index: 99;
+    white-space: nowrap;
+
     font-size: 20px;
     font-weight: 600;
     color: #fff;
     margin-bottom: 20px;
-    // padding-left: 35px;
+    padding-left: 0 !important;
   }
 
   @keyframes loadingAnim {
@@ -90,100 +99,111 @@ body {
   }
 
   .video-list {
-    // display: flex;
+    position: relative;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    // width: 400px;
-    // height: 100px;
-    // background-color: red;
-    // margin-bottom: 10px;
-    // background-color: green;
+    width: 260px;
+    height: 240px;
 
-    .wow {
+    padding: 0 !important;
+    margin: 0 15px 15px 0;
+    border-radius: 12px;
+
+    .color-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .video-container {
       position: relative;
-      width: 310px;
-      height: 260px;
-      margin-bottom: 25px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      overflow: hidden;
+      border-radius: 10px;
 
-      .color-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        transform: translate(7px, -7px);
+        cursor: pointer;
+      }
+    }
+
+    .channel-container {
+      width: 150px;
+      height: 240px;
+      transition: 0.2s ease-in-out;
+
+      img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        z-index: -1;
       }
 
-      .video-container {
-        transition: 0.2s ease-in-out;
+      &:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+    }
 
-        &:hover {
-          transform: translate(7px, -7px);
-          cursor: pointer;
-        }
+    .thumbnail {
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .channel {
+      // width: 340px;
+      // height: 200px;
+      text-align: center;
+      margin-top: 10px;
+
+      img {
+        // width: 180px;
+        border-radius: 50%;
+      }
+    }
+
+    .video-details {
+      background-color: $card-bg;
+      padding: 14px 10px;
+
+      h5 {
+        color: #fff;
+        font-size: 16px;
       }
 
-      .channel-container {
-        transition: 0.2s ease-in-out;
+      h6 {
+        color: $main-green;
+        font-size: 12px;
 
-        &:hover {
-          transform: scale(1.05);
-          cursor: pointer;
+        &:last-of-type {
+          color: $main-gray;
         }
       }
+    }
 
-      .thumbnail {
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
+    .channel-details {
+      text-align: center;
+      padding-top: 5px;
+
+      h5 {
+        color: #fff;
+        font-size: 16px;
       }
 
-      .channel {
-        // width: 340px;
-        // height: 200px;
-        text-align: center;
-        margin-top: 10px;
-
-        img {
-          // width: 180px;
-          border-radius: 50%;
-        }
-      }
-
-      .video-details {
-        background-color: $card-bg;
-        padding: 14px 10px;
-
-        h5 {
-          color: #fff;
-          font-size: 16px;
-        }
-
-        h6 {
-          color: $main-green;
-          font-size: 12px;
-
-          &:last-of-type {
-            color: $main-gray;
-          }
-        }
-      }
-
-      .channel-details {
-        text-align: center;
-        padding-top: 5px;
-
-        h5 {
-          color: #fff;
-          font-size: 16px;
-        }
-
-        h6 {
-          font-size: 12px;
-          color: $main-red;
-        }
+      h6 {
+        font-size: 12px;
+        color: $main-red;
       }
     }
   }

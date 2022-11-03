@@ -37,7 +37,7 @@ function Featured() {
                 setNextToken(res.nextPageToken);
                 setIsLoading(false);
                 
-                // console.log(res);
+                console.log(res);
                 // console.log(videos);
             })
     }, [searchFilter, filters])
@@ -66,13 +66,13 @@ function Featured() {
     }
 
   return (
-    <Row lg={12} className='featured' style={ sidebarStatus.value ? { 'paddingLeft': '280px', 'paddingRight': '40px' } : { 'paddingLeft': '25px', 'paddingRight': '25px' }}>
-        <h2>{searchFilter.value !== '' ? searchFilter.value : 'Featured'} Videos</h2>
+    <Row className='featured' style={ sidebarStatus.value ? { 'paddingLeft': '280px', 'paddingRight': '40px' } : { 'paddingLeft': '25px', 'paddingRight': '25px' }}>
         { isLoading && <img src={loading} className='loadingGif' alt='loading spinning circle' /> }
 
-            { videos && videos.map((video: any) => (
-            <Col className='video-list d-flex justify-content-center' key={ video.id.videoId } style={{ 'paddingLeft': '0px', 'paddingRight': '10px' }} >
-                <div className='wow'>
+            { videos && videos.map((video: any, index: number) => (
+            <Col lg={1} className='video-list' key={ video.id.videoId } style={{ backgroundColor: video.id.kind === "youtube#video" ? colors[Math.floor(Math.random() * colors.length)] : '' }}>
+                { index === 0 ? <h2>{searchFilter.value !== '' ? searchFilter.value : 'Featured'} { filters.value === "video" ? 'Videos' : (filters.value === "channel" ? 'Channels' : 'Results') }</h2> : null }
+
                 <div className={ video.id.kind === "youtube#video" ? "video-container" : "channel-container" }>
                     <Link to={`/video/${video.id.videoId}`} state={{ channelId: video.snippet.channelId }} onClick={() => dispatch(hideSidebar())}>
                         <div className={ video.id.kind === "youtube#video" ? "thumbnail" : "channel" }>
@@ -91,9 +91,6 @@ function Featured() {
                         <h5>{ video.snippet.channelTitle }</h5>
                         <h6>5M subscribers</h6>
                     </div> }
-                </div>
-
-                { video.id.kind === "youtube#video" ? <div className='color-bg' style={{ backgroundColor: colors[Math.floor(Math.random() * colors.length)] }}></div> : null }
                 </div>
             </Col>
         )) }
