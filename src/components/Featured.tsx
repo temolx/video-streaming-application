@@ -8,6 +8,7 @@ import { RootState } from '../redux/store';
 import { Link } from 'react-router-dom';
 
 import { colors } from '../colors';
+import loading from '../img/loadingGif.gif'
 import { hideSidebar } from '../redux/slices/SidebarSlice';
 
 
@@ -22,14 +23,19 @@ function Featured() {
 
     const[videos, setVideos] = useState<any>();
     const[nextToken, setNextToken] = useState<string>('');
+    const[isLoading, setIsLoading] = useState<boolean>(false);
 
     let url = `search?part=snippet&q=${searchFilter.value}&type=${filters.value}`;
 
     useEffect(() => {
+        setVideos('');
+        setIsLoading(true);
+
         getData(url)
             .then((res) => {
                 setVideos(res.items);
                 setNextToken(res.nextPageToken);
+                setIsLoading(false);
                 
                 // console.log(res);
                 // console.log(videos);
@@ -41,6 +47,7 @@ function Featured() {
         const bottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
         if (bottom) {
+            setIsLoading(true);
             fetchMore();
             // window.scrollTo(0, 0)
             // console.log("bottom reached!");
@@ -52,17 +59,19 @@ function Featured() {
             .then((res) => {
                 setVideos([...videos, ...res.items]);
                 setNextToken(res.nextPageToken);
+                setIsLoading(false);
                 // console.log(res);
                 console.log(videos);
         })
     }
 
   return (
-    <Row className='featured' style={ sidebarStatus.value ? { 'paddingLeft': '280px', 'paddingRight': '40px' } : { 'paddingLeft': '40px', 'paddingRight': '40px' }}>
+    <Row lg={12} className='featured' style={ sidebarStatus.value ? { 'paddingLeft': '280px', 'paddingRight': '40px' } : { 'paddingLeft': '25px', 'paddingRight': '25px' }}>
         <h2>{searchFilter.value !== '' ? searchFilter.value : 'Featured'} Videos</h2>
+        { isLoading && <img src={loading} className='loadingGif' alt='loading spinning circle' /> }
 
             { videos && videos.map((video: any) => (
-            <Col className='video-list' key={ video.id.videoId } style={{ 'paddingLeft': 0, 'paddingRight': 0, 'margin': '15px' }} >
+            <Col className='video-list' key={ video.id.videoId } style={{ 'paddingLeft': 0, 'paddingRight': 0, 'marginBottom': '15px' }} >
                 <div className={ video.id.kind === "youtube#video" ? "video-container" : "channel-container" }>
                     <Link to={`/video/${video.id.videoId}`} state={{ channelId: video.snippet.channelId }} onClick={() => dispatch(hideSidebar())}>
                         <div className={ video.id.kind === "youtube#video" ? "thumbnail" : "channel" }>

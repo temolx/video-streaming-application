@@ -69,15 +69,33 @@ body {
     font-weight: 600;
     color: #fff;
     margin-bottom: 20px;
-    padding-left: 35px;
+    // padding-left: 35px;
+  }
+
+  @keyframes loadingAnim {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 100%;
+
+    }
+  }
+
+  .loadingGif{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 999;
+    width: 60px;
   }
 
   .video-list {
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    margin-bottom: 35px;
 
     &:not(&:last-of-type) {
       margin-right: 10px;
