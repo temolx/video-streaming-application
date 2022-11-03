@@ -71,7 +71,8 @@ function Featured() {
         { isLoading && <img src={loading} className='loadingGif' alt='loading spinning circle' /> }
 
             { videos && videos.map((video: any) => (
-            <Col className='video-list' key={ video.id.videoId } style={{ 'paddingLeft': 0, 'paddingRight': 0, 'marginBottom': '15px' }} >
+            <Col className='video-list d-flex justify-content-center' key={ video.id.videoId } style={{ 'paddingLeft': '0px', 'paddingRight': '10px' }} >
+                <div className='wow'>
                 <div className={ video.id.kind === "youtube#video" ? "video-container" : "channel-container" }>
                     <Link to={`/video/${video.id.videoId}`} state={{ channelId: video.snippet.channelId }} onClick={() => dispatch(hideSidebar())}>
                         <div className={ video.id.kind === "youtube#video" ? "thumbnail" : "channel" }>
@@ -93,6 +94,7 @@ function Featured() {
                 </div>
 
                 { video.id.kind === "youtube#video" ? <div className='color-bg' style={{ backgroundColor: colors[Math.floor(Math.random() * colors.length)] }}></div> : null }
+                </div>
             </Col>
         )) }
     </Row>
