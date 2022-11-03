@@ -99,15 +99,10 @@ body {
   cursor: pointer;
 }
 .featured .video-list .channel-container {
-  width: 150px;
-  height: 240px;
   transition: 0.2s ease-in-out;
 }
 .featured .video-list .channel-container img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  width: 130px;
 }
 .featured .video-list .channel-container:hover {
   transform: scale(1.05);
@@ -121,10 +116,9 @@ body {
 }
 .featured .video-list .channel {
   text-align: center;
-  margin-top: 10px;
 }
 .featured .video-list .channel img {
-  border-radius: 50%;
+  border-radius: 80px;
 }
 .featured .video-list .video-details {
   background-color: #1c1c1c;
@@ -434,6 +428,7 @@ body {
 }
 .video-page .suggested-list img {
   width: 270px;
+  border-radius: 10px;
   transition: 0.3s ease-in-out;
 }
 .video-page .suggested-list img:hover {

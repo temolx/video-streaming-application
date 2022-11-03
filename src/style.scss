@@ -137,14 +137,10 @@ body {
     }
 
     .channel-container {
-      width: 150px;
-      height: 240px;
       transition: 0.2s ease-in-out;
 
       img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        width: 130px;
       }
 
       &:hover {
@@ -162,14 +158,11 @@ body {
     }
 
     .channel {
-      // width: 340px;
       // height: 200px;
       text-align: center;
-      margin-top: 10px;
 
       img {
-        // width: 180px;
-        border-radius: 50%;
+        border-radius: 80px;
       }
     }
 
@@ -531,6 +524,7 @@ body {
     margin: 0 0 30px 15px;
     img {
       width: 270px;
+      border-radius: 10px;
       transition: 0.3s ease-in-out;
 
       &:hover {
