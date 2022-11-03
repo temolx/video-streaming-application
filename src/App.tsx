@@ -7,6 +7,7 @@ import Featured from './components/Featured';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import VideoPlayer from './components/VideoPlayer';
+import Channel from './components/Channel';
 
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Featured />} />
           <Route path='/video/:videoID' element={<VideoPlayer />} />
+          <Route path='/channel/:channelID' element={<Channel />} />
         </Routes>
       </Router>
     </div>

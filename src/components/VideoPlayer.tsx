@@ -73,7 +73,7 @@ const VideoPlayer: FC = () => {
         getData(`channels?part=snippet,statistics&id=${channelId}`)
         .then((res) => {
             setChannel(res.items[0]);
-            // console.log(res.items[0]);
+            console.log(res.items[0]);
         }).catch((err) => {
             console.log(err);
         })

@@ -68,21 +68,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 260px;
-  height: 240px;
+  width: 310px;
+  height: 270px;
   padding: 0 !important;
   margin: 0 15px 15px 0;
-  border-radius: 12px;
-}
-.featured .video-list .color-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  z-index: -1;
+  border-radius: 11px;
 }
 .featured .video-list .video-container {
   position: relative;
@@ -525,4 +515,62 @@ body {
 }
 .comment-section .comment-list .comment-content-container .rate-buttons button .active-thumb {
   color: #44b079;
+}
+
+/* CHANNEL STYLING */
+.channel {
+  padding: 120px;
+  display: block;
+}
+.channel .channel-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #dddddd;
+}
+.channel .channel-info .channel-profile {
+  display: flex;
+  align-items: center;
+}
+.channel .channel-info .channel-profile .branding img {
+  width: 90px;
+  border-radius: 50px;
+  margin-right: 15px;
+}
+.channel .channel-info .channel-profile .channel-stats h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
+.channel .channel-info .channel-profile .channel-stats h5 {
+  font-size: 15px;
+  color: #868686;
+  font-weight: 400;
+}
+.channel .channel-info button {
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  width: 105px;
+  height: 38px;
+  margin-left: 18px;
+}
+.channel .channel-info button:hover {
+  background-color: #c8c8c8;
+}
+.channel .channel-info #checkmark {
+  color: #44b079;
+  margin-right: 6px;
+}
+.channel .channel-info .subscribe-active {
+  color: #dddddd;
+  background-color: #1c1c1c;
+  width: 135px;
+}
+.channel .channel-info .subscribe-active:hover {
+  color: #dddddd;
+  background-color: #1c1c1c;
+}
+.channel hr {
+  color: #868686;
 }/*# sourceMappingURL=style.css.map */

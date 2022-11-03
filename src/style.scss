@@ -103,22 +103,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 260px;
-    height: 240px;
+    width: 310px;
+    height: 270px;
 
     padding: 0 !important;
     margin: 0 15px 15px 0;
-    border-radius: 12px;
-
-    .color-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
+    border-radius: 11px;
 
     .video-container {
       position: relative;
@@ -646,5 +636,60 @@ body {
         }
       }
     }
+  }
+}
+
+/* CHANNEL STYLING */
+.channel {
+  padding: 120px;
+  display: block;
+
+  .channel-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $main-white;
+
+    .channel-profile {
+      display: flex;
+      align-items: center;
+
+      .branding {
+        img {
+          width: 90px;
+          border-radius: 50px;
+          margin-right: 15px;
+        }
+      }
+
+      .channel-stats {
+        h4 {
+          font-size: 20px;
+          font-weight: 500;
+        }
+        h5 {
+          font-size: 15px;
+          color: $main-gray;
+          font-weight: 400;
+        }
+      }
+    }
+
+    button {
+      @include subscribeBtn;
+    }
+
+    #checkmark {
+      color: $main-green;
+      margin-right: 6px;
+    }
+
+    .subscribe-active {
+      @include subscribeBtnActive;
+    }
+  }
+
+  hr {
+    color: $main-gray;
   }
 }
