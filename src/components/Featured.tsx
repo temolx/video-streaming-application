@@ -18,7 +18,7 @@ function Featured() {
     const searchFilter = useSelector((state: RootState) => state.searchFilter);
     const sidebarStatus = useSelector((state: RootState) => state.sidebarStatus);
     const filters = useSelector((state: RootState) => state.filters);
-    const resultsAmount = useSelector((state: RootState) => state.resultsAmount) 
+    // const resultsAmount = useSelector((state: RootState) => state.resultsAmount) 
 
     const[videos, setVideos] = useState<any>();
     const[nextToken, setNextToken] = useState<string>('');
