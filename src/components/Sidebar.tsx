@@ -38,7 +38,7 @@ function Sidebar() {
 
                     { filtersVisible ? <div className='filter-categories'>
                       <div className="filter-checkbox">
-                        <input type="checkbox" name="all" onChange={() => dispatch(checkAll())} checked={filters.value === ''} />
+                        <input type="checkbox" name="all" onChange={() => dispatch(checkAll())} checked={filters.value === 'video,channel'} />
                         <label htmlFor="all">All Results</label>
                       </div>
 

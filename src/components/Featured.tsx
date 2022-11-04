@@ -1,5 +1,4 @@
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 import { useEffect, useState } from 'react'
 import { getData } from '../API/getData';
@@ -10,11 +9,10 @@ import { Link } from 'react-router-dom';
 import { colors } from '../colors';
 import loading from '../img/loadingGif.gif'
 import { hideSidebar } from '../redux/slices/SidebarSlice';
+import Video from './Video';
 
 
 function Featured() {
-
-    const dispatch = useDispatch();
 
     const searchFilter = useSelector((state: RootState) => state.searchFilter);
     const sidebarStatus = useSelector((state: RootState) => state.sidebarStatus);
@@ -70,29 +68,7 @@ function Featured() {
         { isLoading && <img src={loading} className='loadingGif' alt='loading spinning circle' /> }
 
             { videos && videos.map((video: any, index: number) => (
-            <Col lg={1} className='video-list' key={ video.id.videoId } style={{ backgroundColor: video.id.kind === "youtube#video" ? colors[Math.floor(Math.random() * colors.length)] : '' }}>
-                { index === 0 ? <h2>{searchFilter.value !== '' ? searchFilter.value : 'Featured'} { filters.value === "video" ? 'Videos' : (filters.value === "channel" ? 'Channels' : 'Results') }</h2> : null }
-
-                <div className={ video.id.kind === "youtube#video" ? "video-container" : "channel-container" }>
-                    <Link to={ video.id.kind === "youtube#video" ? `/video/${video.id.videoId}` : `/channel/${video.snippet.channelId}`} state={{ channelId: video.snippet.channelId }} onClick={() => dispatch(hideSidebar())}>
-                        <div className={ video.id.kind === "youtube#video" ? "thumbnail" : "channel" }>
-                            <img src={video.snippet.thumbnails.medium.url} alt='thumbnail' />
-                        </div>
-                    </Link>
-
-                    { video.id.kind === "youtube#video" ? 
-                    <div className="video-details">
-                        <h5>{ video.snippet.title.slice(0, 30) }</h5>
-                        <h6>{ video.snippet.channelTitle }</h6>
-                        <h6>1.8M views</h6>
-                    </div> : 
-                    
-                    <div className="channel-details">
-                        <h5>{ video.snippet.channelTitle }</h5>
-                        <h6>5M subscribers</h6>
-                    </div> }
-                </div>
-            </Col>
+            <Video video={video} index={index} />
         )) }
     </Row>
   )

@@ -6,10 +6,10 @@ interface filterType {
 
 export const fiterSlice = createSlice({
     name: 'filterSlice',
-    initialState: { value: '' } as filterType,
+    initialState: { value: 'video,channel' } as filterType,
     reducers: {
         checkAll: (state: filterType) => {
-            state.value = ''
+            state.value = 'video,channel'
         },
         checkVideos: (state: filterType) => {
             state.value = 'video'

@@ -1,0 +1,1 @@
+export const shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format

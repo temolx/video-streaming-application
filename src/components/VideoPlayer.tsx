@@ -7,6 +7,7 @@ import { useParams, Link, useLocation } from 'react-router-dom'
 import { FaThumbsUp, FaThumbsDown, FaCheckCircle } from 'react-icons/fa';
 import { BsFillPinAngleFill } from 'react-icons/bs';
 import blankProfile from '../img/blankProfile.webp'
+import { shortMonthName } from '../shortMonth';
 
 import ReactPlayer from 'react-player'
 
@@ -36,7 +37,7 @@ const VideoPlayer: FC = () => {
     const[channel, setChannel] = useState<any>([]);
 
     let date = new Date()
-    const shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format
+    // const shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format
 
     useEffect(() => {
         // fetch video info

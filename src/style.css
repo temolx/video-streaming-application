@@ -28,6 +28,83 @@ body {
   justify-content: center;
   margin: 0 auto !important;
 }
+.featured .video-list {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 310px;
+  height: 270px;
+  padding: 0 !important;
+  margin: 0 15px 15px 0;
+  border-radius: 11px;
+}
+.featured .video-list .video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;
+}
+.featured .video-list .video-container:hover {
+  transform: translate(7px, -7px);
+  cursor: pointer;
+}
+.featured .video-list .video-container .thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.featured .video-list .channel-container {
+  display: block;
+  transition: 0.2s ease-in-out;
+}
+.featured .video-list .channel-container:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.featured .video-list .channel-container .channel-profile {
+  text-align: center;
+  width: 135px;
+}
+.featured .video-list .channel-container .channel-profile img {
+  width: 135px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.featured .video-list .channel-container .channel-details {
+  text-align: center;
+}
+.featured .video-list .channel-container .channel-details h5 {
+  color: #fff;
+  font-size: 16px;
+}
+.featured .video-list .channel-container .channel-details h6 {
+  font-size: 12px;
+  color: #ea4d4d;
+}
+.featured .video-list .video-details {
+  background-color: #1c1c1c;
+  padding: 14px 10px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.featured .video-list .video-details h5 {
+  color: #fff;
+  font-size: 16px;
+}
+.featured .video-list .video-details h6 {
+  color: #44b079;
+  font-size: 12px;
+}
+.featured .video-list .video-details h6:last-of-type {
+  color: #868686;
+}
 .featured h2 {
   position: absolute;
   top: -45px;
@@ -62,80 +139,6 @@ body {
   right: 10px;
   z-index: 999;
   width: 60px;
-}
-.featured .video-list {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 310px;
-  height: 270px;
-  padding: 0 !important;
-  margin: 0 15px 15px 0;
-  border-radius: 11px;
-}
-.featured .video-list .video-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  overflow: hidden;
-  border-radius: 10px;
-  transition: 0.2s ease-in-out;
-}
-.featured .video-list .video-container:hover {
-  transform: translate(7px, -7px);
-  cursor: pointer;
-}
-.featured .video-list .channel-container {
-  transition: 0.2s ease-in-out;
-}
-.featured .video-list .channel-container img {
-  width: 130px;
-}
-.featured .video-list .channel-container:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-}
-.featured .video-list .thumbnail img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.featured .video-list .channel {
-  text-align: center;
-}
-.featured .video-list .channel img {
-  border-radius: 80px;
-}
-.featured .video-list .video-details {
-  background-color: #1c1c1c;
-  padding: 14px 10px;
-}
-.featured .video-list .video-details h5 {
-  color: #fff;
-  font-size: 16px;
-}
-.featured .video-list .video-details h6 {
-  color: #44b079;
-  font-size: 12px;
-}
-.featured .video-list .video-details h6:last-of-type {
-  color: #868686;
-}
-.featured .video-list .channel-details {
-  text-align: center;
-  padding-top: 5px;
-}
-.featured .video-list .channel-details h5 {
-  color: #fff;
-  font-size: 16px;
-}
-.featured .video-list .channel-details h6 {
-  font-size: 12px;
-  color: #ea4d4d;
 }
 
 /* HEADER */
@@ -518,35 +521,66 @@ body {
 }
 
 /* CHANNEL STYLING */
-.channel {
-  padding: 120px;
+.individual-channel {
   display: block;
+  color: #dddddd;
 }
-.channel .channel-info {
+.individual-channel header {
+  padding: 120px 120px 40px 120px;
+}
+.individual-channel nav {
+  margin-top: 25px;
+}
+.individual-channel nav ul {
+  display: flex;
+  list-style: none;
+  padding-left: 22px;
+}
+.individual-channel nav ul li {
+  margin-right: 50px;
+  color: #868686;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.individual-channel nav ul li:hover {
+  color: #dddddd;
+}
+.individual-channel nav hr {
+  position: absolute;
+  left: 0;
+  top: 16.5em;
+  width: 100%;
+  color: #868686;
+}
+.individual-channel .channel-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #dddddd;
 }
-.channel .channel-info .channel-profile {
+.individual-channel .channel-info .channel-profile-container {
+  display: block;
+  align-items: center;
+}
+.individual-channel .channel-info .channel-profile-container .channel-profile {
   display: flex;
   align-items: center;
 }
-.channel .channel-info .channel-profile .branding img {
+.individual-channel .channel-info .channel-profile-container .branding img {
   width: 90px;
   border-radius: 50px;
   margin-right: 15px;
 }
-.channel .channel-info .channel-profile .channel-stats h4 {
+.individual-channel .channel-info .channel-profile-container .channel-stats h4 {
   font-size: 20px;
   font-weight: 500;
 }
-.channel .channel-info .channel-profile .channel-stats h5 {
+.individual-channel .channel-info .channel-profile-container .channel-stats h5 {
   font-size: 15px;
   color: #868686;
   font-weight: 400;
 }
-.channel .channel-info button {
+.individual-channel .channel-info button {
   font-size: 14px;
   font-weight: 600;
   border: none;
@@ -555,22 +589,122 @@ body {
   height: 38px;
   margin-left: 18px;
 }
-.channel .channel-info button:hover {
+.individual-channel .channel-info button:hover {
   background-color: #c8c8c8;
 }
-.channel .channel-info #checkmark {
+.individual-channel .channel-info #checkmark {
   color: #44b079;
   margin-right: 6px;
 }
-.channel .channel-info .subscribe-active {
+.individual-channel .channel-info .subscribe-active {
   color: #dddddd;
   background-color: #1c1c1c;
   width: 135px;
 }
-.channel .channel-info .subscribe-active:hover {
+.individual-channel .channel-info .subscribe-active:hover {
   color: #dddddd;
   background-color: #1c1c1c;
 }
-.channel hr {
+.individual-channel hr {
   color: #868686;
+}
+.individual-channel .uploads {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto !important;
+}
+.individual-channel .uploads .video-list {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 310px;
+  height: 270px;
+  padding: 0 !important;
+  margin: 0 15px 15px 0;
+  border-radius: 11px;
+}
+.individual-channel .uploads .video-list .video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;
+}
+.individual-channel .uploads .video-list .video-container:hover {
+  transform: translate(7px, -7px);
+  cursor: pointer;
+}
+.individual-channel .uploads .video-list .video-container .thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.individual-channel .uploads .video-list .channel-container {
+  display: block;
+  transition: 0.2s ease-in-out;
+}
+.individual-channel .uploads .video-list .channel-container:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.individual-channel .uploads .video-list .channel-container .channel-profile {
+  text-align: center;
+  width: 135px;
+}
+.individual-channel .uploads .video-list .channel-container .channel-profile img {
+  width: 135px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.individual-channel .uploads .video-list .channel-container .channel-details {
+  text-align: center;
+}
+.individual-channel .uploads .video-list .channel-container .channel-details h5 {
+  color: #fff;
+  font-size: 16px;
+}
+.individual-channel .uploads .video-list .channel-container .channel-details h6 {
+  font-size: 12px;
+  color: #ea4d4d;
+}
+.individual-channel .uploads .video-list .video-details {
+  background-color: #1c1c1c;
+  padding: 14px 10px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.individual-channel .uploads .video-list .video-details h5 {
+  color: #fff;
+  font-size: 16px;
+}
+.individual-channel .uploads .video-list .video-details h6 {
+  color: #44b079;
+  font-size: 12px;
+}
+.individual-channel .uploads .video-list .video-details h6:last-of-type {
+  color: #868686;
+}
+.individual-channel .About {
+  display: flex;
+  padding: 20px 120px;
+  height: 100vh;
+}
+.individual-channel .About h6 {
+  font-weight: 400;
+}
+.individual-channel .About h5 {
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+.individual-channel .About .channel-description {
+  margin-right: 40px;
+}
+.individual-channel .About .channel-statistics-container {
+  display: block;
 }/*# sourceMappingURL=style.css.map */

@@ -11,7 +11,10 @@ interface subSlice {
 
 export const subscriptionSlice = createSlice({
     name: 'subscriptionSlice',
-    initialState: { value: [] } as subSlice, // aray of channel IDs
+    initialState: { value: [{
+        channelId: 'UC-J-KZfRV8c13fOCkhXdLiQ',
+        channelName: 'Dua Lipa'
+    }] } as subSlice, // aray of channel IDs
     reducers: {
         subscribe: (state: subSlice, action: PayloadAction<payloadType>) => {
             if (state.value.some((el) => el.channelId === action.payload.channelId)) { // already subscribed
