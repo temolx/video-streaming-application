@@ -10,6 +10,10 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+body hr {
+  border: none;
+  border-top: 1.1px solid;
+}
 
 .App {
   background-color: #121212;
@@ -526,7 +530,7 @@ body {
   color: #dddddd;
 }
 .individual-channel header {
-  padding: 120px 120px 40px 120px;
+  padding: 120px 6% 40px 6%;
 }
 .individual-channel nav {
   margin-top: 25px;
@@ -537,13 +541,48 @@ body {
   padding-left: 22px;
 }
 .individual-channel nav ul li {
+  position: relative;
   margin-right: 50px;
   color: #868686;
+  font-weight: 500;
+  text-transform: uppercase;
   transition: 0.3s ease-in-out;
   cursor: pointer;
 }
 .individual-channel nav ul li:hover {
   color: #dddddd;
+}
+.individual-channel nav ul .active-section {
+  color: #dddddd;
+  transition: 0.3s ease-in-out;
+}
+@-webkit-keyframes underlineAnim {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes underlineAnim {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.individual-channel nav ul .active-section::after {
+  content: "";
+  position: absolute;
+  bottom: -21px;
+  left: 0px;
+  width: 100%;
+  height: 2px;
+  background-color: #ea4d4d;
+  border-radius: 50px;
+  -webkit-animation: underlineAnim 0.3s ease-in-out;
+          animation: underlineAnim 0.3s ease-in-out;
 }
 .individual-channel nav hr {
   position: absolute;
@@ -691,20 +730,76 @@ body {
   color: #868686;
 }
 .individual-channel .About {
-  display: flex;
-  padding: 20px 120px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 50px 6%;
   height: 100vh;
 }
 .individual-channel .About h6 {
   font-weight: 400;
+  font-size: 15px;
 }
 .individual-channel .About h5 {
   font-size: 16px;
   margin-bottom: 25px;
 }
 .individual-channel .About .channel-description {
-  margin-right: 40px;
+  margin-right: 20px;
+}
+.individual-channel .About .channel-description h6 {
+  white-space: pre-wrap;
+}
+.individual-channel .About .channel-description hr {
+  margin-top: 35px;
 }
 .individual-channel .About .channel-statistics-container {
   display: block;
+}
+.individual-channel .About .channel-statistics-container .channel-statistics button {
+  background: none;
+  border: none;
+  color: #dddddd;
+  transition: 0.3s ease-in-out;
+}
+.individual-channel .About .channel-statistics-container .channel-statistics button:hover {
+  transform: scale(1.2);
+}
+.individual-channel .About .channel-statistics-container .channel-statistics .btn-poked {
+  color: #ea4d4d;
+}
+@-webkit-keyframes pokeAnim {
+  0% {
+    opacity: 0%;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
+@keyframes pokeAnim {
+  0% {
+    opacity: 0%;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
+.individual-channel .About .channel-statistics-container .channel-statistics .poke-msg {
+  position: absolute;
+  bottom: 10px;
+  right: 40px;
+  -webkit-animation: pokeAnim 0.5s ease-in;
+          animation: pokeAnim 0.5s ease-in;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #ea4d4d;
+  background-color: #1c1c1c;
+  padding: 10px 20px;
+  border-radius: 40px;
+}
+.individual-channel .home {
+  height: 100vh;
 }/*# sourceMappingURL=style.css.map */

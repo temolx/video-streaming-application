@@ -8,11 +8,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { subscribe } from '../redux/slices/subscriptionSlice';
 import { RootState } from '../redux/store';
 
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaRegFlag } from 'react-icons/fa';
 
 import Video from './Video';
 import { sections } from '../sections';
 import { shortMonthName } from '../shortMonth';
+import { setTimeout } from 'timers/promises';
 
 
 const Channel: FC = () => {
@@ -27,13 +28,18 @@ const Channel: FC = () => {
 
     const[channel, setChannel] = useState<any>();
     const[channelVideos, setChannelVideos] = useState<any>();
-    const[section, setSection] = useState<string>(sections[1]); // Home, Videos, About
+    const[currSection, setCurrSection] = useState<string>(sections[1]); // Home, Videos, About
+    const[poke, setPoke] = useState<string>('');
+    const[keywords, setKeywords] = useState<string[]>([])
+    const[currentKey, setCurrentkey] = useState<number>(0);
+
 
     useEffect(() => {
         getData(`channels?part=snippet,statistics&id=${channelId}`)
             .then((res) => {
                 setChannel(res.items[0]);
-                console.log(res.items[0]);
+                setKeywords([...res.items[0]?.brandingSettings?.channel?.keywords.replace('"', '').split(' ')]);
+                // console.log(res.items[0]);
             }).catch((err) => {
                 console.log(err);
             })
@@ -45,7 +51,17 @@ const Channel: FC = () => {
             }).catch((err) => {
                 console.log(err);
             })
+
+        setInterval(() => {
+            setCurrentkey((prev) => prev + 1);
+        }, 3000)
     }, [])
+
+    const pokeUser = () => {
+        setPoke(`You just poked ${channel?.snippet?.title}`);
+
+        window.setTimeout(() => setPoke(''), 3000)
+    }
     
   return (
     <div className='individual-channel' style={ sidebarStatus.value ? { 'paddingLeft': '280px', 'paddingRight': '40px' } : { 'paddingLeft': '0px', 'paddingRight': '0px' }}>
@@ -76,7 +92,7 @@ const Channel: FC = () => {
         <nav>
             <ul>
                 { sections.map((section: string) => (
-                    <li key={section} onClick={() => setSection(section)}>{ section }</li>
+                    <li key={section} onClick={() => setCurrSection(section)} className={currSection === section ? 'active-section' : ''}>{ section }</li>
                 ))}
             </ul>
 
@@ -85,18 +101,23 @@ const Channel: FC = () => {
         </Row>
         </header>
 
-        { section === 'Videos' ? <Row className='uploads'>
+        { currSection === 'Videos' ? <Row className='uploads'>
             { channelVideos?.items && channelVideos?.items.map((channelVideo: any) => (
                 <Video video={channelVideo} />
             )) }
-        </Row> : (section === 'Home' ? 
+        </Row> : (currSection === 'Home' ? 
             <div className='home'>
-                channel home page
-            </div> : 
+                { keywords && keywords.map((keyword: string, index: number) => (
+                    <div className='keyword'>
+                        <h2>{ index === currentKey ? keyword : '' }</h2>
+                    </div>
+                )) }
+            </div> :
             <div className='About'>
                 <div className="channel-description">
                     <h5>Description</h5>
                     <h6>{ channel?.brandingSettings?.channel?.description }</h6>
+                    <hr />
                 </div>
 
                 <div className="channel-statistics-container">
@@ -107,10 +128,12 @@ const Channel: FC = () => {
                         <h6>Joined { shortMonthName(new Date(channel?.snippet?.publishedAt)) + ' ' + new Date(channel?.snippet?.publishedAt).getDay() + ', ' +  new Date(channel?.snippet?.publishedAt).getFullYear()}</h6>
                         <hr />
                         <h6>{ Number(channel?.statistics?.viewCount).toLocaleString() } Views</h6>
+                        <hr />
+
+                        <button onClick={pokeUser} className={poke !== '' ? 'btn-poked' : ''}><FaRegFlag /></button>
+                        { poke !== '' ? <h5 className='poke-msg'>{ poke }</h5> : null }
                     </div>
                 </div>
-
-                <hr />
             </div>) }
     </div>
   )
