@@ -4,11 +4,8 @@ import { useEffect, useState } from 'react'
 import { getData } from '../API/getData';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
-import { Link } from 'react-router-dom';
 
-import { colors } from '../colors';
 import loading from '../img/loadingGif.gif'
-import { hideSidebar } from '../redux/slices/SidebarSlice';
 import Video from './Video';
 
 

@@ -139,7 +139,7 @@ const VideoPlayer: FC = () => {
             <div className="description">
                 <hr />
                     <p>{ expanded ? video.snippet.description : video.snippet.description.slice(0, 200) + '...' }</p>
-                    <button onClick={() => setExpanded(!expanded)}>{ expanded ? 'Shoe less' : 'Show more' }</button>
+                    <button onClick={() => setExpanded(!expanded)}>{ expanded ? 'Show less' : 'Show more' }</button>
                 <hr />
             </div>
 

@@ -11,6 +11,7 @@ import { RootState } from '../redux/store';
 import { FaCheckCircle, FaRegFlag } from 'react-icons/fa';
 
 import Video from './Video';
+import ChannelHome from './ChannelHome';
 import { sections } from '../sections';
 import { shortMonthName } from '../shortMonth';
 import { setTimeout } from 'timers/promises';
@@ -30,15 +31,12 @@ const Channel: FC = () => {
     const[channelVideos, setChannelVideos] = useState<any>();
     const[currSection, setCurrSection] = useState<string>(sections[1]); // Home, Videos, About
     const[poke, setPoke] = useState<string>('');
-    const[keywords, setKeywords] = useState<string[]>([])
-    const[currentKey, setCurrentkey] = useState<number>(0);
 
 
     useEffect(() => {
         getData(`channels?part=snippet,statistics&id=${channelId}`)
             .then((res) => {
                 setChannel(res.items[0]);
-                setKeywords([...res.items[0]?.brandingSettings?.channel?.keywords.replace('"', '').split(' ')]);
                 // console.log(res.items[0]);
             }).catch((err) => {
                 console.log(err);
@@ -51,10 +49,6 @@ const Channel: FC = () => {
             }).catch((err) => {
                 console.log(err);
             })
-
-        setInterval(() => {
-            setCurrentkey((prev) => prev + 1);
-        }, 3000)
     }, [])
 
     const pokeUser = () => {
@@ -106,13 +100,7 @@ const Channel: FC = () => {
                 <Video video={channelVideo} />
             )) }
         </Row> : (currSection === 'Home' ? 
-            <div className='home'>
-                { keywords && keywords.map((keyword: string, index: number) => (
-                    <div className='keyword'>
-                        <h2>{ index === currentKey ? keyword : '' }</h2>
-                    </div>
-                )) }
-            </div> :
+            <ChannelHome videoID={channel?.brandingSettings?.channel?.unsubscribedTrailer} /> :
             <div className='About'>
                 <div className="channel-description">
                     <h5>Description</h5>

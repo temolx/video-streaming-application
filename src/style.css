@@ -802,4 +802,48 @@ body hr {
 }
 .individual-channel .home {
   height: 100vh;
+  padding: 20px 6% 10px 6%;
+}
+.individual-channel .home .video {
+  margin-right: 20px;
+  position: relative;
+}
+.individual-channel .home .featured-video {
+  display: flex;
+  height: 265px;
+}
+.individual-channel .home .featured-video .video-info {
+  position: relative;
+  display: flex;
+}
+.individual-channel .home .featured-video .video-info button {
+  position: absolute;
+  bottom: -30px;
+  background: none;
+  border: none;
+  color: #868686;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.individual-channel .home .featured-video .video-info .home-text {
+  display: block;
+  color: #dddddd;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.individual-channel .home .featured-video .video-info .home-text h5 {
+  font-size: 17px;
+  font-weight: 700;
+}
+.individual-channel .home .featured-video .video-info .home-text h6 {
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+.individual-channel .home .featured-video .video-info .home-text h6:first-of-type {
+  color: #868686;
+}
+.individual-channel .home .featured-video .video-info .home-text h6:last-of-type {
+  white-space: pre-wrap;
 }/*# sourceMappingURL=style.css.map */

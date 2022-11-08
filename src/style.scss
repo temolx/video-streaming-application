@@ -148,6 +148,15 @@ $main-red: #ea4d4d;
   }
 }
 
+@mixin showBtn {
+  background: none;
+  border: none;
+  color: $main-gray;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -517,12 +526,7 @@ body {
       }
 
       button {
-        background: none;
-        border: none;
-        color: $main-gray;
-        font-size: 12px;
-        font-weight: 700;
-        text-transform: uppercase;
+        @include showBtn;
       }
 
       hr {
@@ -726,17 +730,6 @@ body {
       width: 100%;
       color: $main-gray;
     }
-
-    // .red {
-    //   left: 8rem; // add +6 rem for it to get to the next li element
-    //   top: 16.5em;
-    //   width: 4%;
-    //   color: $main-red;
-    //   border: none;
-    //   border-top: 3px solid $main-red;
-    //   border-radius: 70px;
-    //   transition: 0.2s ease-in-out;
-    // }
   }
 
   .channel-info {
@@ -873,8 +866,54 @@ body {
 
   .home {
     height: 100vh;
+    padding: 20px 6% 10px 6%;
 
-    .keywords {
+    .video {
+      margin-right: 20px;
+      position: relative;
+    }
+
+    .featured-video {
+      display: flex;
+      height: 265px;
+
+      .video-info {
+        position: relative;
+        display: flex;
+
+        button {
+          position: absolute;
+          bottom: -30px;
+          @include showBtn;
+        }
+
+        .home-text {
+          display: block;
+          color: $main-white;
+
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+
+          h5 {
+            font-size: 17px;
+            font-weight: 700;
+          }
+
+          h6 {
+            font-size: 15px;
+            margin-bottom: 20px;
+
+            &:first-of-type {
+              color: $main-gray;
+            }
+
+            &:last-of-type {
+              white-space: pre-wrap;
+            }
+          }
+        }
+      }
     }
   }
 }
