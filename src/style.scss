@@ -681,6 +681,10 @@ body {
       list-style: none;
       padding-left: 22px;
 
+      a {
+        text-decoration: none;
+      }
+
       li {
         position: relative;
         margin-right: 50px;
@@ -793,124 +797,141 @@ body {
 
     @include searchList;
   }
+}
 
-  .About {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    padding: 50px 6%;
-    height: 100vh;
+/* CHANNEL ABOUT PAGE STYLING */
+.About {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 50px 6%;
+  height: 100vh;
 
+  h6 {
+    font-weight: 400;
+    font-size: 15px;
+  }
+
+  h5 {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+
+  .channel-description {
+    margin-right: 20px;
     h6 {
-      font-weight: 400;
-      font-size: 15px;
+      white-space: pre-wrap;
     }
 
-    h5 {
-      font-size: 16px;
-      margin-bottom: 25px;
-    }
-
-    .channel-description {
-      margin-right: 20px;
-      h6 {
-        white-space: pre-wrap;
-      }
-
-      hr {
-        margin-top: 35px;
-      }
-    }
-
-    .channel-statistics-container {
-      display: block;
-
-      .channel-statistics {
-        button {
-          @include defaultBtn;
-        }
-
-        .btn-poked {
-          color: $main-red;
-        }
-
-        @keyframes pokeAnim {
-          0% {
-            opacity: 0%;
-            transform: scale(0);
-          }
-          100% {
-            opacity: 100%;
-            transform: scale(1);
-          }
-        }
-
-        .poke-msg {
-          position: absolute;
-          bottom: 10px;
-          right: 40px;
-
-          // transform: rotate(-5deg);
-
-          animation: pokeAnim 0.5s ease-in;
-
-          text-transform: uppercase;
-          font-weight: 700;
-          color: $main-red;
-          background-color: $card-bg;
-          padding: 10px 20px;
-          border-radius: 40px;
-        }
-      }
+    hr {
+      margin-top: 35px;
     }
   }
 
-  .home {
-    height: 100vh;
-    padding: 20px 6% 10px 6%;
+  .channel-statistics-container {
+    display: block;
 
-    .video {
-      margin-right: 20px;
-      position: relative;
+    .channel-statistics {
+      button {
+        @include defaultBtn;
+      }
+
+      .btn-poked {
+        color: $main-red;
+      }
+
+      @keyframes pokeAnim {
+        0% {
+          opacity: 0%;
+          transform: scale(0);
+        }
+        100% {
+          opacity: 100%;
+          transform: scale(1);
+        }
+      }
+
+      .poke-msg {
+        position: absolute;
+        bottom: 10px;
+        right: 40px;
+
+        // transform: rotate(-5deg);
+
+        animation: pokeAnim 0.5s ease-in;
+
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $main-red;
+        background-color: $card-bg;
+        padding: 10px 20px;
+        border-radius: 40px;
+      }
+    }
+  }
+}
+
+/* CHANNEL HOME PAGE STYLING */
+.home {
+  height: 100vh;
+  padding: 20px 6% 10px 6%;
+
+  .video {
+    margin-right: 20px;
+    position: relative;
+  }
+
+  .featured-video {
+    position: relative;
+    display: flex;
+    height: 265px;
+
+    hr {
+      position: absolute;
+      width: 100%;
+      bottom: -100px;
     }
 
-    .featured-video {
+    .video-info {
+      position: relative;
       display: flex;
-      height: 265px;
 
-      .video-info {
-        position: relative;
-        display: flex;
-
-        button {
+      a {
+        &:last-child {
           position: absolute;
           bottom: -30px;
-          @include showBtn;
+          button {
+            @include showBtn;
+          }
         }
+      }
 
-        .home-text {
-          display: block;
+      .home-text {
+        display: block;
+        color: $main-white;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        a {
           color: $main-white;
-
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-
+          text-decoration: none;
           h5 {
             font-size: 17px;
             font-weight: 700;
           }
+        }
 
-          h6 {
-            font-size: 15px;
-            margin-bottom: 20px;
+        h6 {
+          font-size: 15px;
+          margin-bottom: 20px;
 
-            &:first-of-type {
-              color: $main-gray;
-            }
+          &:first-of-type {
+            color: $main-gray;
+          }
 
-            &:last-of-type {
-              white-space: pre-wrap;
-            }
+          &:last-of-type {
+            white-space: pre-wrap;
           }
         }
       }

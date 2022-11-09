@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import { hideSidebar } from '../redux/slices/SidebarSlice';
 import { useDispatch } from 'react-redux';
 
-
-
 type IProps = {
     videoID: string
 }
@@ -35,12 +33,14 @@ const ChannelHome: FC<IProps> = ({ videoID }) => {
             <div className="video-info">
                 <div className="home-text">
                     <h5>{ homeVideo?.snippet?.title }</h5>
-                    <h6>{ Number(homeVideo?.statistics?.viewCount).toLocaleString() } Views</h6>
+                    <h6>{ Number(homeVideo?.statistics?.viewCount).toLocaleString() } views</h6>
                     <h6>{ homeVideo?.snippet?.description }...</h6>
                 </div>
 
-                <Link to={`/video/${videoID}`} state={{ channelId: homeVideo.snippet.channelId }} onClick={() => dispatch(hideSidebar())}><button>see more</button></Link>
+                <Link to={`/video/${videoID}`} state={{ channelId: homeVideo?.snippet?.channelId }} onClick={() => dispatch(hideSidebar())}><button>see more</button></Link>
             </div>
+
+            <hr />
         </div>
     </div>
   )

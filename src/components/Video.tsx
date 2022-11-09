@@ -24,7 +24,7 @@ const Video: FC<IProps> = ({ video, index }) => {
                 { index === 0 ? <h2>{searchFilter.value !== '' ? searchFilter.value : 'Featured'} { filters.value === "video" ? 'Videos' : (filters.value === "channel" ? 'Channels' : 'Results') }</h2> : null }
 
                 <div className={ video.id.kind === "youtube#video" ? "video-container" : "channel-container" }>
-                    <Link to={ video.id.kind === "youtube#video" ? `/video/${video.id.videoId}` : `/channel/${video.snippet.channelId}`} state={{ channelId: video.snippet.channelId }} onClick={() => dispatch(hideSidebar())}>
+                    <Link to={ video.id.kind === "youtube#video" ? `/video/${video.id.videoId}` : `/channel/${video.snippet.channelId}/about`} state={{ channelId: video?.snippet?.channelId }} onClick={() => dispatch(hideSidebar())}>
                         <div className={ video.id.kind === "youtube#video" ? "thumbnail" : "channel-profile" }>
                             <img src={video?.snippet?.thumbnails?.medium?.url || blankProfile} alt='thumbnail' />
                         </div>

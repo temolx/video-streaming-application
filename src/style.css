@@ -540,6 +540,9 @@ body hr {
   list-style: none;
   padding-left: 22px;
 }
+.individual-channel nav ul a {
+  text-decoration: none;
+}
 .individual-channel nav ul li {
   position: relative;
   margin-right: 50px;
@@ -729,42 +732,44 @@ body hr {
 .individual-channel .uploads .video-list .video-details h6:last-of-type {
   color: #868686;
 }
-.individual-channel .About {
+
+/* CHANNEL ABOUT PAGE STYLING */
+.About {
   display: grid;
   grid-template-columns: 3fr 1fr;
   padding: 50px 6%;
   height: 100vh;
 }
-.individual-channel .About h6 {
+.About h6 {
   font-weight: 400;
   font-size: 15px;
 }
-.individual-channel .About h5 {
+.About h5 {
   font-size: 16px;
   margin-bottom: 25px;
 }
-.individual-channel .About .channel-description {
+.About .channel-description {
   margin-right: 20px;
 }
-.individual-channel .About .channel-description h6 {
+.About .channel-description h6 {
   white-space: pre-wrap;
 }
-.individual-channel .About .channel-description hr {
+.About .channel-description hr {
   margin-top: 35px;
 }
-.individual-channel .About .channel-statistics-container {
+.About .channel-statistics-container {
   display: block;
 }
-.individual-channel .About .channel-statistics-container .channel-statistics button {
+.About .channel-statistics-container .channel-statistics button {
   background: none;
   border: none;
   color: #dddddd;
   transition: 0.3s ease-in-out;
 }
-.individual-channel .About .channel-statistics-container .channel-statistics button:hover {
+.About .channel-statistics-container .channel-statistics button:hover {
   transform: scale(1.2);
 }
-.individual-channel .About .channel-statistics-container .channel-statistics .btn-poked {
+.About .channel-statistics-container .channel-statistics .btn-poked {
   color: #ea4d4d;
 }
 @-webkit-keyframes pokeAnim {
@@ -787,7 +792,7 @@ body hr {
     transform: scale(1);
   }
 }
-.individual-channel .About .channel-statistics-container .channel-statistics .poke-msg {
+.About .channel-statistics-container .channel-statistics .poke-msg {
   position: absolute;
   bottom: 10px;
   right: 40px;
@@ -800,25 +805,35 @@ body hr {
   padding: 10px 20px;
   border-radius: 40px;
 }
-.individual-channel .home {
+
+/* CHANNEL HOME PAGE STYLING */
+.home {
   height: 100vh;
   padding: 20px 6% 10px 6%;
 }
-.individual-channel .home .video {
+.home .video {
   margin-right: 20px;
   position: relative;
 }
-.individual-channel .home .featured-video {
+.home .featured-video {
+  position: relative;
   display: flex;
   height: 265px;
 }
-.individual-channel .home .featured-video .video-info {
+.home .featured-video hr {
+  position: absolute;
+  width: 100%;
+  bottom: -100px;
+}
+.home .featured-video .video-info {
   position: relative;
   display: flex;
 }
-.individual-channel .home .featured-video .video-info button {
+.home .featured-video .video-info a:last-child {
   position: absolute;
   bottom: -30px;
+}
+.home .featured-video .video-info a:last-child button {
   background: none;
   border: none;
   color: #868686;
@@ -826,24 +841,28 @@ body hr {
   font-weight: 700;
   text-transform: uppercase;
 }
-.individual-channel .home .featured-video .video-info .home-text {
+.home .featured-video .video-info .home-text {
   display: block;
   color: #dddddd;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.individual-channel .home .featured-video .video-info .home-text h5 {
+.home .featured-video .video-info .home-text a {
+  color: #dddddd;
+  text-decoration: none;
+}
+.home .featured-video .video-info .home-text a h5 {
   font-size: 17px;
   font-weight: 700;
 }
-.individual-channel .home .featured-video .video-info .home-text h6 {
+.home .featured-video .video-info .home-text h6 {
   font-size: 15px;
   margin-bottom: 20px;
 }
-.individual-channel .home .featured-video .video-info .home-text h6:first-of-type {
+.home .featured-video .video-info .home-text h6:first-of-type {
   color: #868686;
 }
-.individual-channel .home .featured-video .video-info .home-text h6:last-of-type {
+.home .featured-video .video-info .home-text h6:last-of-type {
   white-space: pre-wrap;
 }/*# sourceMappingURL=style.css.map */

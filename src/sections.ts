@@ -1,5 +1,5 @@
 export const sections = [
-    'Home',
-    'Videos',
-    'About'
+    'home',
+    'videos',
+    'about'
 ]

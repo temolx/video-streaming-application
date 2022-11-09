@@ -14,7 +14,6 @@ function Featured() {
     const searchFilter = useSelector((state: RootState) => state.searchFilter);
     const sidebarStatus = useSelector((state: RootState) => state.sidebarStatus);
     const filters = useSelector((state: RootState) => state.filters);
-    // const resultsAmount = useSelector((state: RootState) => state.resultsAmount) 
 
     const[videos, setVideos] = useState<any>();
     const[nextToken, setNextToken] = useState<string>('');
@@ -44,8 +43,6 @@ function Featured() {
         if (bottom) {
             setIsLoading(true);
             fetchMore();
-            // window.scrollTo(0, 0)
-            // console.log("bottom reached!");
         }
     }
 
@@ -55,8 +52,6 @@ function Featured() {
                 setVideos([...videos, ...res.items]);
                 setNextToken(res.nextPageToken);
                 setIsLoading(false);
-                // console.log(res);
-                console.log(videos);
         })
     }
 

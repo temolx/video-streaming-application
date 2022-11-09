@@ -9,6 +9,10 @@ import Sidebar from './components/Sidebar';
 import VideoPlayer from './components/VideoPlayer';
 import Channel from './components/Channel';
 
+import ChannelHome from './components/ChannelHome';
+import About from './components/About';
+import ChannelVideos from './components/ChannelVideos';
+
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
 
@@ -30,7 +34,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Featured />} />
           <Route path='/video/:videoID' element={<VideoPlayer />} />
-          <Route path='/channel/:channelID' element={<Channel />} />
+          <Route path='/channel/:channelID/:section' element={<Channel />} />
         </Routes>
       </Router>
     </div>

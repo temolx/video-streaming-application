@@ -8,18 +8,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { subscribe } from '../redux/slices/subscriptionSlice';
 import { RootState } from '../redux/store';
 
-import { FaCheckCircle, FaRegFlag } from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 
-import Video from './Video';
 import ChannelHome from './ChannelHome';
+import About from './About';
+import ChannelVideos from './ChannelVideos';
 import { sections } from '../sections';
-import { shortMonthName } from '../shortMonth';
-import { setTimeout } from 'timers/promises';
+
+import { Link, useParams } from 'react-router-dom';
+
 
 
 const Channel: FC = () => {
 
     const dispatch = useDispatch();
+
+    const { section } = useParams();
 
     const sidebarStatus = useSelector((state: RootState) => state.sidebarStatus);
     const subscriptions = useSelector((state: RootState) => state.subscriptions);
@@ -28,10 +32,6 @@ const Channel: FC = () => {
     const { channelId } = location.state;
 
     const[channel, setChannel] = useState<any>();
-    const[channelVideos, setChannelVideos] = useState<any>();
-    const[currSection, setCurrSection] = useState<string>(sections[1]); // Home, Videos, About
-    const[poke, setPoke] = useState<string>('');
-
 
     useEffect(() => {
         getData(`channels?part=snippet,statistics&id=${channelId}`)
@@ -41,21 +41,7 @@ const Channel: FC = () => {
             }).catch((err) => {
                 console.log(err);
             })
-
-        getData(`search?part=snippet,id&channelId=${channelId}&order=date&type=video`)
-            .then((res) => {
-                setChannelVideos(res);
-                console.log(res);
-            }).catch((err) => {
-                console.log(err);
-            })
-    }, [])
-
-    const pokeUser = () => {
-        setPoke(`You just poked ${channel?.snippet?.title}`);
-
-        window.setTimeout(() => setPoke(''), 3000)
-    }
+    }, [channelId])
     
   return (
     <div className='individual-channel' style={ sidebarStatus.value ? { 'paddingLeft': '280px', 'paddingRight': '40px' } : { 'paddingLeft': '0px', 'paddingRight': '0px' }}>
@@ -85,8 +71,8 @@ const Channel: FC = () => {
 
         <nav>
             <ul>
-                { sections.map((section: string) => (
-                    <li key={section} onClick={() => setCurrSection(section)} className={currSection === section ? 'active-section' : ''}>{ section }</li>
+                { sections.map((currentSection: string) => (
+                    <Link to={`/channel/${channelId}/${currentSection}`} state={{ channelId: channelId }}><li key={currentSection} className={section === currentSection ? 'active-section' : ''}>{ currentSection }</li></Link>
                 ))}
             </ul>
 
@@ -95,34 +81,8 @@ const Channel: FC = () => {
         </Row>
         </header>
 
-        { currSection === 'Videos' ? <Row className='uploads'>
-            { channelVideos?.items && channelVideos?.items.map((channelVideo: any) => (
-                <Video video={channelVideo} />
-            )) }
-        </Row> : (currSection === 'Home' ? 
-            <ChannelHome videoID={channel?.brandingSettings?.channel?.unsubscribedTrailer} /> :
-            <div className='About'>
-                <div className="channel-description">
-                    <h5>Description</h5>
-                    <h6>{ channel?.brandingSettings?.channel?.description }</h6>
-                    <hr />
-                </div>
-
-                <div className="channel-statistics-container">
-                    <h5>Stats</h5>
-                    <hr />
-
-                    <div className="channel-statistics">
-                        <h6>Joined { shortMonthName(new Date(channel?.snippet?.publishedAt)) + ' ' + new Date(channel?.snippet?.publishedAt).getDay() + ', ' +  new Date(channel?.snippet?.publishedAt).getFullYear()}</h6>
-                        <hr />
-                        <h6>{ Number(channel?.statistics?.viewCount).toLocaleString() } Views</h6>
-                        <hr />
-
-                        <button onClick={pokeUser} className={poke !== '' ? 'btn-poked' : ''}><FaRegFlag /></button>
-                        { poke !== '' ? <h5 className='poke-msg'>{ poke }</h5> : null }
-                    </div>
-                </div>
-            </div>) }
+        { section === 'videos' ? <ChannelVideos channelId={channelId} /> : (section === 'home' ? 
+            <ChannelHome videoID={channel?.brandingSettings?.channel?.unsubscribedTrailer} /> : <About channel={channel} /> ) }
     </div>
   )
 }
