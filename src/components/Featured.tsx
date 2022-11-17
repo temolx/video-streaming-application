@@ -19,7 +19,7 @@ function Featured() {
     const[nextToken, setNextToken] = useState<string>('');
     const[isLoading, setIsLoading] = useState<boolean>(false);
 
-    let url = `search?part=snippet&q=${searchFilter.value}&type=${filters.value}`;
+    let url = `search?part=snippet&q=${searchFilter.value}&type=${filters.value}&maxResults=40`;
 
     useEffect(() => {
         setVideos('');

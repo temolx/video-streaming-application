@@ -37,11 +37,10 @@ const VideoPlayer: FC = () => {
     const[channel, setChannel] = useState<any>([]);
 
     let date = new Date()
-    // const shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format
 
     useEffect(() => {
         // fetch video info
-        getData(`videos?part=contentDetails,snippet,statistics&id=${videoID}`)
+        getData(`videos?part=contentDetails,snippet,statistics&id=${videoID}&maxResults=40`)
             .then((res) => {
                 setVideo(res.items[0]);
                 setDescKeywords(res.items[0].snippet.description.split(' ').filter((el: string) => {
@@ -53,7 +52,7 @@ const VideoPlayer: FC = () => {
             })
 
         // fetch suggested videos
-        getData(`search?part=contentDetails,snippet,statistics&type=video&relatedToVideoId=${videoID}`)
+        getData(`search?part=contentDetails,snippet,statistics&type=video&relatedToVideoId=${videoID}&maxResults=40`)
             .then((res) => {
                 setSuggestedVideos(res.items);
                 // console.log(res.items);
@@ -62,7 +61,7 @@ const VideoPlayer: FC = () => {
             })
 
         // fetch video comments
-        getData(`commentThreads?part=snippet&videoId=${videoID}`)
+        getData(`commentThreads?part=snippet&videoId=${videoID}&maxResults=40`)
         .then((res) => {
             setComments(res.items);
             // console.log(res);

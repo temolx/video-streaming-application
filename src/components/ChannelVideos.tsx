@@ -12,7 +12,7 @@ const ChannelVideos: FC<IProps> = ({ channelId }) => {
   const[channelVideos, setChannelVideos] = useState<any>();
 
   useEffect(() => {
-    getData(`search?part=snippet,id&channelId=${channelId}&order=date&type=video`)
+    getData(`search?part=snippet,id&channelId=${channelId}&order=date&type=video&maxResults=40`)
     .then((res) => {
         setChannelVideos(res);
         console.log(res);

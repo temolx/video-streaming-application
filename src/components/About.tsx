@@ -29,7 +29,7 @@ const About: FC<IProps> = ({ channel }) => {
                     <hr />
 
                     <div className="channel-statistics">
-                        <h6>Joined { shortMonthName(new Date(channel?.snippet?.publishedAt)) + ' ' + new Date(channel?.snippet?.publishedAt).getDay() + ', ' +  new Date(channel?.snippet?.publishedAt).getFullYear()}</h6>
+                        { channel?.snippet?.publishedAt && <h6>Joined { shortMonthName(new Date(channel?.snippet?.publishedAt)) + ' ' + new Date(channel?.snippet?.publishedAt).getDay() + ', ' +  new Date(channel?.snippet?.publishedAt).getFullYear()}</h6> }
                         <hr />
                         <h6>{ Number(channel?.statistics?.viewCount).toLocaleString() } Views</h6>
                         <hr />

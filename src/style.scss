@@ -793,6 +793,7 @@ body {
   .uploads {
     display: flex;
     justify-content: center;
+    left: 10px;
     margin: 0 auto !important;
 
     @include searchList;
@@ -874,6 +875,48 @@ body {
 .home {
   height: 100vh;
   padding: 20px 6% 10px 6%;
+  display: block;
+  position: relative;
+
+  .upload-list {
+    position: relative;
+    display: flex;
+    margin-top: 110px;
+
+    .home-uploads {
+      @include searchList();
+
+      .video-list {
+        width: 285px;
+        height: 255px;
+      }
+    }
+
+    button {
+      position: absolute;
+      top: 75px;
+      background-color: $card-bg;
+      color: $main-white;
+      font-size: 16px;
+      padding: 10px 13px;
+      border-radius: 30px;
+      border: none;
+      transition: 0.3s ease-in-out;
+      opacity: 80%;
+      z-index: 999;
+
+      &:hover {
+        background-color: rgb(46, 46, 46);
+      }
+    }
+
+    .prev-btn {
+      left: -28px;
+    }
+    .next-btn {
+      right: -28px;
+    }
+  }
 
   .video {
     margin-right: 20px;

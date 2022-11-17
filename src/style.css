@@ -653,6 +653,7 @@ body hr {
 .individual-channel .uploads {
   display: flex;
   justify-content: center;
+  left: 10px;
   margin: 0 auto !important;
 }
 .individual-channel .uploads .video-list {
@@ -810,6 +811,116 @@ body hr {
 .home {
   height: 100vh;
   padding: 20px 6% 10px 6%;
+  display: block;
+  position: relative;
+}
+.home .upload-list {
+  position: relative;
+  display: flex;
+  margin-top: 110px;
+}
+.home .upload-list .home-uploads .video-list {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 310px;
+  height: 270px;
+  padding: 0 !important;
+  margin: 0 15px 15px 0;
+  border-radius: 11px;
+}
+.home .upload-list .home-uploads .video-list .video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;
+}
+.home .upload-list .home-uploads .video-list .video-container:hover {
+  transform: translate(7px, -7px);
+  cursor: pointer;
+}
+.home .upload-list .home-uploads .video-list .video-container .thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.home .upload-list .home-uploads .video-list .channel-container {
+  display: block;
+  transition: 0.2s ease-in-out;
+}
+.home .upload-list .home-uploads .video-list .channel-container:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.home .upload-list .home-uploads .video-list .channel-container .channel-profile {
+  text-align: center;
+  width: 135px;
+}
+.home .upload-list .home-uploads .video-list .channel-container .channel-profile img {
+  width: 135px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.home .upload-list .home-uploads .video-list .channel-container .channel-details {
+  text-align: center;
+}
+.home .upload-list .home-uploads .video-list .channel-container .channel-details h5 {
+  color: #fff;
+  font-size: 16px;
+}
+.home .upload-list .home-uploads .video-list .channel-container .channel-details h6 {
+  font-size: 12px;
+  color: #ea4d4d;
+}
+.home .upload-list .home-uploads .video-list .video-details {
+  background-color: #1c1c1c;
+  padding: 14px 10px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.home .upload-list .home-uploads .video-list .video-details h5 {
+  color: #fff;
+  font-size: 16px;
+}
+.home .upload-list .home-uploads .video-list .video-details h6 {
+  color: #44b079;
+  font-size: 12px;
+}
+.home .upload-list .home-uploads .video-list .video-details h6:last-of-type {
+  color: #868686;
+}
+.home .upload-list .home-uploads .video-list {
+  width: 285px;
+  height: 255px;
+}
+.home .upload-list button {
+  position: absolute;
+  top: 75px;
+  background-color: #1c1c1c;
+  color: #dddddd;
+  font-size: 16px;
+  padding: 10px 13px;
+  border-radius: 30px;
+  border: none;
+  transition: 0.3s ease-in-out;
+  opacity: 80%;
+  z-index: 999;
+}
+.home .upload-list button:hover {
+  background-color: rgb(46, 46, 46);
+}
+.home .upload-list .prev-btn {
+  left: -28px;
+}
+.home .upload-list .next-btn {
+  right: -28px;
 }
 .home .video {
   margin-right: 20px;
