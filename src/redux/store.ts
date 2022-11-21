@@ -6,6 +6,7 @@ import { likeSlice } from "./slices/likeSlice";
 import { subscriptionSlice } from "./slices/subscriptionSlice";
 import { likeCommentSlice } from "./slices/likeCommentSlice";
 import { ResultsAmountSlice } from "./slices/ResultsAmountSlice";
+import { historySlice } from "./slices/HistorySlice";
 
 const store = configureStore({
     reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
         likedVideos: likeSlice.reducer,
         subscriptions: subscriptionSlice.reducer,
         likedComments: likeCommentSlice.reducer,
-        resultsAmount: ResultsAmountSlice.reducer
+        resultsAmount: ResultsAmountSlice.reducer,
+        history: historySlice.reducer
     }
 })
 

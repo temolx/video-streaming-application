@@ -16,6 +16,7 @@ import { RootState } from '../redux/store';
 import { like } from '../redux/slices/likeSlice';
 import { subscribe } from '../redux/slices/subscriptionSlice';
 import { likeComment } from '../redux/slices/likeCommentSlice';
+import { addHistory } from '../redux/slices/HistorySlice';
 
 const VideoPlayer: FC = () => {
 
@@ -46,7 +47,10 @@ const VideoPlayer: FC = () => {
                 setDescKeywords(res.items[0].snippet.description.split(' ').filter((el: string) => {
                     return el.includes('#');
                 }));
-                // console.log(res.items[0]);
+                
+                // add video to history
+                dispatch(addHistory(res.items[0].id));
+
             }).catch((err) => {
                 console.log(err);
             })

@@ -10,6 +10,8 @@ import { checkAll, checkVideos, checkChannels } from '../redux/slices/FilterSlic
 import { addSearchWord } from '../redux/slices/SearchSlice';
 import { RootState } from '../redux/store';
 
+import { Link } from 'react-router-dom';
+
 
 
 function Sidebar() {
@@ -30,7 +32,7 @@ function Sidebar() {
             <li onClick={() => dispatch(addSearchWord('Gaming'))}><Controller className='side-icon' /> <p>Gaming</p></li>
 
             <div className="sidebar-functionality">
-              <li><History className='side-icon' /><p>History Page</p></li>
+              <Link to='/history'><History className='side-icon' /><p>History Page</p></Link>
               <li className='filter-item' onMouseEnter={() => setFiltersVisible(true)} onMouseLeave={() => setFiltersVisible(false)} >
                   <div className='filter-container'>
                     <Filter className='side-icon' />
@@ -65,7 +67,7 @@ function Sidebar() {
             <h6>Subscriptions</h6>
             <ul>
                 { subscriptions && subscriptions.value.map((subscription) => (
-                  <li key={ subscription.channelId }><User className='side-icon user-icon' /><p>{ subscription.channelName }</p></li>
+                  <Link to={`/channel/${subscription.channelId}/videos`} state={{ channelId: subscription.channelId }} key={ subscription.channelId }><User className='side-icon user-icon' /><p>{ subscription.channelName }</p></Link>
                 )) }
             </ul>
         </div> }

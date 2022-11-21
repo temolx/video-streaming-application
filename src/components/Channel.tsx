@@ -37,7 +37,6 @@ const Channel: FC = () => {
         getData(`channels?part=snippet,statistics&id=${channelId}`)
             .then((res) => {
                 setChannel(res.items[0]);
-                // console.log(res.items[0]);
             }).catch((err) => {
                 console.log(err);
             })
@@ -49,24 +48,27 @@ const Channel: FC = () => {
         <Row>
         <div className="channel-info">
             <div className="channel-profile-container">
+                {/* <div className="banner">
+                    <img src={channel?.brandingSettings?.image?.bannerExternalUrl} alt='banner' />
+                </div> */}
+
                 <div className='channel-profile'>
-                    <div className="branding">
-                        {/* <div className="banner">
-                            <img src={channel?.brandingSettings?.image?.bannerExternalUrl} alt='banner' />
-                        </div> */}
-                        
-                        <img src={channel?.snippet?.thumbnails?.high?.url} alt='profile' />
+                    <div className="left">
+                        <div className="branding">
+                            <img src={channel?.snippet?.thumbnails?.high?.url} alt='profile' />
+                        </div>
+
+                        <div className="channel-stats">
+                            <h4>{ channel?.snippet?.title }</h4>
+                            <h5>{ Number(channel?.statistics?.subscriberCount).toLocaleString() } subscribers</h5>
+                        </div>
                     </div>
 
-                    <div className="channel-stats">
-                        <h4>{ channel?.snippet?.title }</h4>
-                        <h5>{ Number(channel?.statistics?.subscriberCount).toLocaleString() } subscribers</h5>
-                    </div>
+
+                    <button onClick={() => dispatch(subscribe({ channelId: channelId, channelName: channel?.snippet?.title }))} className={ subscriptions.value.some((el) => el.channelId === channelId) ? 'subscribe-active' : '' }>{ subscriptions.value.some((el) => el.channelId === channelId) ? (<div><FaCheckCircle id='checkmark' /> Subscribed</div>) : 'Subscribe' }</button>
                 </div>
             </div>
 
-
-            <button onClick={() => dispatch(subscribe({ channelId: channelId, channelName: channel?.snippet?.title }))} className={ subscriptions.value.some((el) => el.channelId === channelId) ? 'subscribe-active' : '' }>{ subscriptions.value.some((el) => el.channelId === channelId) ? (<div><FaCheckCircle id='checkmark' /> Subscribed</div>) : 'Subscribe' }</button>
         </div>
 
         <nav>

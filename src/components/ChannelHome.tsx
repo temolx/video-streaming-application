@@ -6,6 +6,7 @@ import { hideSidebar } from '../redux/slices/SidebarSlice';
 import { useDispatch } from 'react-redux';
 import Video from './Video';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import loading from '../img/loadingGif.gif'
 
 type IProps = {
     videoID: string
@@ -33,11 +34,11 @@ const ChannelHome: FC<IProps> = ({ videoID }) => {
             })
         
             fetchHomeUploads();
-    }, [homeVideo])
+    }, [homeVideo, homeUploads])
 
     
     const fetchHomeUploads = () => {
-        getData( nextToken === '' ? uploadsURL : `${uploadsURL}&pageToken=${nextToken}`)
+        getData(nextToken === '' ? uploadsURL : `${uploadsURL}&pageToken=${nextToken}`)
             .then((res) => {
                 setHomeUploads(res);
                 setNextToken(res.nextPageToken);
@@ -80,7 +81,7 @@ const ChannelHome: FC<IProps> = ({ videoID }) => {
             <hr />
         </div>
 
-        { homeUploads?.items && <div className="upload-list">
+        { homeUploads?.items ? <div className="upload-list">
             <button onClick={fetchPrev} className='prev-btn'><FaArrowLeft /></button>
 
             { homeUploads?.items && homeUploads?.items.map((homeUpload: any) => (
@@ -90,7 +91,7 @@ const ChannelHome: FC<IProps> = ({ videoID }) => {
             ))}
 
             <button onClick={fetchHomeUploads} className='next-btn'><FaArrowRight /></button>
-        </div> }
+        </div> : <img src={loading} className='loadingGif' alt='loading spinning circle' />}
     </div>
   )
 }

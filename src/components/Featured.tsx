@@ -2,7 +2,7 @@ import Row from 'react-bootstrap/Row';
 
 import { useEffect, useState } from 'react'
 import { getData } from '../API/getData';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 
 import loading from '../img/loadingGif.gif'
@@ -60,7 +60,7 @@ function Featured() {
         { isLoading && <img src={loading} className='loadingGif' alt='loading spinning circle' /> }
 
             { videos && videos.map((video: any, index: number) => (
-            <Video video={video} index={index} />
+            <Video video={video} index={index} key={video.snippet.title} />
         )) }
     </Row>
   )

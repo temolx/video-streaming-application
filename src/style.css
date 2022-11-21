@@ -230,18 +230,22 @@ body hr {
   list-style: none;
   margin-top: 80px;
 }
-.sidebar ul li {
+.sidebar ul li,
+.sidebar ul a {
   color: #dddddd;
   display: flex;
   align-items: center;
   padding: 12px 0 0 30px;
   margin-left: -30px;
+  text-decoration: none;
   transition: 0.3s ease-in-out;
 }
-.sidebar ul li .side-icon {
+.sidebar ul li .side-icon,
+.sidebar ul a .side-icon {
   margin: 0 10px 15px 0;
 }
-.sidebar ul li:hover {
+.sidebar ul li:hover,
+.sidebar ul a:hover {
   background-color: rgba(128, 128, 128, 0.171);
   cursor: pointer;
 }
@@ -599,12 +603,20 @@ body hr {
   align-items: center;
   justify-content: space-between;
   color: #dddddd;
+  position: relative;
 }
 .individual-channel .channel-info .channel-profile-container {
   display: block;
   align-items: center;
+  position: relative;
+  width: 100%;
 }
 .individual-channel .channel-info .channel-profile-container .channel-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.individual-channel .channel-info .channel-profile-container .channel-profile .left {
   display: flex;
   align-items: center;
 }
@@ -776,21 +788,21 @@ body hr {
 @-webkit-keyframes pokeAnim {
   0% {
     opacity: 0%;
-    transform: scale(0);
+    transform: translateY(70px);
   }
   100% {
     opacity: 100%;
-    transform: scale(1);
+    transform: translateY(0);
   }
 }
 @keyframes pokeAnim {
   0% {
     opacity: 0%;
-    transform: scale(0);
+    transform: translateY(70px);
   }
   100% {
     opacity: 100%;
-    transform: scale(1);
+    transform: translateY(0);
   }
 }
 .About .channel-statistics-container .channel-statistics .poke-msg {
@@ -799,12 +811,13 @@ body hr {
   right: 40px;
   -webkit-animation: pokeAnim 0.5s ease-in;
           animation: pokeAnim 0.5s ease-in;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #ea4d4d;
-  background-color: #1c1c1c;
-  padding: 10px 20px;
-  border-radius: 40px;
+  font-weight: 500;
+  font-size: 14px;
+  color: black;
+  text-align: right;
+  background-color: #dddddd;
+  padding: 10px 20px 10px 35px;
+  border-radius: 7px;
 }
 
 /* CHANNEL HOME PAGE STYLING */
@@ -813,6 +826,13 @@ body hr {
   padding: 20px 6% 10px 6%;
   display: block;
   position: relative;
+}
+.home .loadingGif {
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .home .upload-list {
   position: relative;
@@ -976,4 +996,11 @@ body hr {
 }
 .home .featured-video .video-info .home-text h6:last-of-type {
   white-space: pre-wrap;
+}
+
+/* HISTORY PAGE STYLING */
+.history {
+  padding: 120px 6% 40px 6%;
+  height: 100vh;
+  background-color: #121212;
 }/*# sourceMappingURL=style.css.map */

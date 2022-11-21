@@ -24,7 +24,7 @@ const ChannelVideos: FC<IProps> = ({ channelId }) => {
   return (
     <Row className='uploads'>
         { channelVideos?.items && channelVideos?.items.map((channelVideo: any) => (
-            <Video video={channelVideo} />
+            <Video video={channelVideo} key={channelVideo.snippet.title} />
         )) }
     </Row>
   )
