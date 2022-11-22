@@ -49,7 +49,11 @@ const VideoPlayer: FC = () => {
                 }));
                 
                 // add video to history
-                dispatch(addHistory(res.items[0].id));
+                dispatch(addHistory({ 
+                    id: res.items[0].id,
+                    title: res.items[0].snippet.title,
+                    thumbnail: res.items[0].snippet.thumbnails.medium.url
+                }));
 
             }).catch((err) => {
                 console.log(err);
@@ -122,7 +126,7 @@ const VideoPlayer: FC = () => {
                                 <img src={channel?.snippet?.thumbnails?.high?.url} alt='channel profile' />
 
                                 <div className="uploader-stats">
-                                    <h5>{ channel?.snippet?.title }</h5>
+                                    <Link to={`/channel/${channel.id}/videos`} state={{ channelId: channel.id }}><h5>{ channel?.snippet?.title }</h5></Link>
                                     <h5 className='sub-count'>{ Number(channel?.statistics?.subscriberCount).toLocaleString() } subscribers</h5>
                                 </div>
 

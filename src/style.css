@@ -57,6 +57,11 @@ body hr {
   transform: translate(7px, -7px);
   cursor: pointer;
 }
+.featured .video-list .video-container .thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 .featured .video-list .video-container .thumbnail img {
   position: absolute;
   top: 0;
@@ -73,7 +78,6 @@ body hr {
 }
 .featured .video-list .channel-container .channel-profile {
   text-align: center;
-  width: 135px;
 }
 .featured .video-list .channel-container .channel-profile img {
   width: 135px;
@@ -693,6 +697,11 @@ body hr {
   transform: translate(7px, -7px);
   cursor: pointer;
 }
+.individual-channel .uploads .video-list .video-container .thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 .individual-channel .uploads .video-list .video-container .thumbnail img {
   position: absolute;
   top: 0;
@@ -709,7 +718,6 @@ body hr {
 }
 .individual-channel .uploads .video-list .channel-container .channel-profile {
   text-align: center;
-  width: 135px;
 }
 .individual-channel .uploads .video-list .channel-container .channel-profile img {
   width: 135px;
@@ -864,6 +872,11 @@ body hr {
   transform: translate(7px, -7px);
   cursor: pointer;
 }
+.home .upload-list .home-uploads .video-list .video-container .thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 .home .upload-list .home-uploads .video-list .video-container .thumbnail img {
   position: absolute;
   top: 0;
@@ -880,7 +893,6 @@ body hr {
 }
 .home .upload-list .home-uploads .video-list .channel-container .channel-profile {
   text-align: center;
-  width: 135px;
 }
 .home .upload-list .home-uploads .video-list .channel-container .channel-profile img {
   width: 135px;
@@ -1001,6 +1013,30 @@ body hr {
 /* HISTORY PAGE STYLING */
 .history {
   padding: 120px 6% 40px 6%;
-  height: 100vh;
+  height: 100%;
   background-color: #121212;
+  color: #dddddd;
+}
+.history h1 {
+  color: #dddddd;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.history .watchedList {
+  display: flex;
+  margin-bottom: 35px;
+}
+.history .watchedList img {
+  width: 300px;
+  margin-right: 25px;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+}
+.history .watchedList img:hover {
+  filter: brightness(1.25);
+}
+.history .watchedList h2 {
+  font-weight: 500;
+  font-size: 20px;
 }/*# sourceMappingURL=style.css.map */
