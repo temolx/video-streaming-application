@@ -306,6 +306,9 @@ body hr {
   color: #dddddd;
   padding: 110px;
 }
+.video-page a {
+  text-decoration: none;
+}
 .video-page .video-player .video-info {
   margin-top: 18px;
 }
@@ -1013,30 +1016,115 @@ body hr {
 /* HISTORY PAGE STYLING */
 .history {
   padding: 120px 6% 40px 6%;
-  height: 100%;
+  height: 100vh;
   background-color: #121212;
   color: #dddddd;
+  display: flex;
+  justify-content: space-between;
 }
-.history h1 {
+.history .history-container h1 {
   color: #dddddd;
   font-size: 25px;
   font-weight: 600;
   margin-bottom: 20px;
 }
-.history .watchedList {
+.history .history-container .watchedList {
   display: flex;
   margin-bottom: 35px;
 }
-.history .watchedList img {
+.history .history-container .watchedList .thumbnail {
+  position: relative;
   width: 300px;
-  margin-right: 25px;
   border-radius: 10px;
+  overflow: hidden;
+  margin-right: 20px;
+  background-color: green;
+}
+.history .history-container .watchedList .thumbnail button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 20px;
+  background: none;
+  outline: none;
+  border: none;
   transition: 0.3s ease-in-out;
 }
-.history .watchedList img:hover {
+.history .history-container .watchedList .thumbnail button #search-icon {
+  color: #dddddd;
+}
+.history .history-container .watchedList .thumbnail button:hover {
+  transform: scale(1.2);
+}
+.history .history-container .watchedList .thumbnail img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: 0.3s ease-in-out;
+}
+.history .history-container .watchedList .thumbnail img:hover {
   filter: brightness(1.25);
 }
-.history .watchedList h2 {
+.history .history-container .watchedList h2 {
   font-weight: 500;
   font-size: 20px;
+}
+.history .history-actions {
+  display: block;
+}
+.history .history-actions .search {
+  position: relative;
+}
+.history .history-actions .search #search-icon {
+  position: absolute;
+  font-size: 18px;
+  top: 6px;
+  left: 0;
+  color: #868686;
+}
+.history .history-actions .search input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #868686;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 25px;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 0 0 8px 24px;
+}
+.history .history-actions .search input::-moz-placeholder {
+  color: #868686;
+}
+.history .history-actions .search input:-ms-input-placeholder {
+  color: #868686;
+}
+.history .history-actions .search input::placeholder {
+  color: #868686;
+}
+.history .history-actions .clear {
+  position: relative;
+}
+.history .history-actions .clear button {
+  background: none;
+  border: none;
+  color: #dddddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 19px;
+  border-radius: 40px;
+  padding: 11px 14px;
+  position: absolute;
+  left: -13px;
+}
+.history .history-actions .clear button h3 {
+  font-size: 15px;
+  margin: 0 0 0 5px;
+  font-weight: 600;
+}
+.history .history-actions .clear button:hover {
+  background-color: rgba(255, 255, 255, 0.121);
 }/*# sourceMappingURL=style.css.map */

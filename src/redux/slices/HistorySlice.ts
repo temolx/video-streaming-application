@@ -16,6 +16,9 @@ export const historySlice = createSlice({
     reducers: {
         addHistory: (state: historyType, action: PayloadAction<historyInfo>) => { // receives video id
             state.value = [...state.value, action.payload];
+        },
+        removeFromHistory: () => {
+
         }
     }
 })
